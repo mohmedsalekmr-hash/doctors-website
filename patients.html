@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,4 +106,113 @@
     </script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients - SmilePro</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-tooth" style="font-size: 1.8rem; color: var(--primary);"></i>
+                <span>SmilePro</span>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="admin-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                <a href="cms-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span class="sidebar-text">Website CMS</span>
+                </a>
+                <a href="appointments.html" class="menu-item">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span class="sidebar-text">Appointments</span>
+                </a>
+                <a href="patients.html" class="menu-item active">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="sidebar-text">Patients</span>
+                </a>
+                <a href="settings.html" class="menu-item">
+                    <i class="fa-solid fa-gears"></i>
+                    <span class="sidebar-text">Settings</span>
+                </a>
+                <div style="margin-top: 50px; padding: 0 20px;">
+                    <button class="btn btn-outline"
+                        style="width: 100%; border-color: rgba(255,255,255,0.1); color: #94a3b8;"
+                        onclick="auth.logout()">
+                        <i class="fa-solid fa-right-from-bracket"></i> <span class="sidebar-text">Logout</span>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <h2><i class="fa-solid fa-hospital-user" style="color: var(--primary); margin-right: 10px;"></i>
+                        Patient Directory</h2>
+                    <p>Access patient records, history, and engagement metrics.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="addNewPatient()">
+                        <i class="fa-solid fa-plus"></i> Add New Patient
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <div style="display: flex; gap: 15px; align-items: center; flex: 1;">
+                        <div class="input-with-icon" style="flex: 0.5;">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="patient-search" placeholder="Search by name or phone..."
+                                class="form-control cms-input" style="height: 40px; font-size: 0.85rem;">
+                        </div>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient Identity</th>
+                            <th>Contact Info</th>
+                            <th>Visit Frequency</th>
+                            <th>Last Visit</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patients-body">
+                        <!-- Data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="ui-messages.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        if (auth.checkAccess()) {
+            const script = document.createElement('script');
+            script.src = 'admin.js';
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+
+>>>>>>> origin/main
 </html>

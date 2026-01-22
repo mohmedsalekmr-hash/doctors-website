@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -305,4 +306,313 @@
     </script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - SmilePro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header id="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-tooth"></i> Smile<span>Pro</span>
+            </a>
+            <div class="header-actions" style="display: flex; gap: 15px; align-items: center;">
+                <button id="lang-toggle" class="btn btn-outline" style="padding: 8px 15px; font-size: 0.85rem;">
+                    <i class="fa-solid fa-globe"></i> <span id="lang-text">العربية</span>
+                </button>
+                <a href="index.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Back to
+                    Home</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-card">
+                <div class="booking-header">
+                    <h1 id="booking-title">Book Your Appointment</h1>
+                    <p id="booking-subtitle">Experience world-class dental care. Select your service to begin.</p>
+                </div>
+
+                <div class="booking-steps">
+                    <div class="step active" id="step-indicator-1">
+                        <div class="step-circle">1</div>
+                        <span class="step-label" id="step-1-label">Service</span>
+                    </div>
+                    <div class="step" id="step-indicator-2">
+                        <div class="step-circle">2</div>
+                        <span class="step-label" id="step-2-label">Time</span>
+                    </div>
+                    <div class="step" id="step-indicator-3">
+                        <div class="step-circle">3</div>
+                        <span class="step-label" id="step-3-label">Details</span>
+                    </div>
+                </div>
+
+                <div class="booking-body">
+                    <!-- Step 1: Select Service -->
+                    <div id="step-1" class="step-content">
+                        <h3 id="choose-service-title" style="margin-bottom: 25px; font-size: 1.4rem;">Choose a Service
+                        </h3>
+                        <div class="service-select">
+                            <div class="service-option" onclick="selectService(this, 'Checkup')">
+                                <i class="fa-solid fa-notes-medical"></i>
+                                <span class="service-name" id="service-1-name">General Checkup</span>
+                                <span class="service-price" id="service-1-desc">30 min • $50</span>
+                            </div>
+                            <div class="service-option" onclick="selectService(this, 'Whitening')">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span class="service-name" id="service-2-name">Teeth Whitening</span>
+                                <span class="service-price" id="service-2-desc">60 min • $200</span>
+                            </div>
+                            <div class="service-option" onclick="selectService(this, 'Cleaning')">
+                                <i class="fa-solid fa-tooth"></i>
+                                <span class="service-name" id="service-3-name">Deep Cleaning</span>
+                                <span class="service-price" id="service-3-desc">45 min • $80</span>
+                            </div>
+                        </div>
+                        <div class="step-actions">
+                            <button class="btn btn-primary" onclick="nextStep(2)" style="margin-left: auto;">
+                                <span id="btn-next-1">Next Step</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Select Time -->
+                    <div id="step-2" class="step-content hidden">
+                        <h3 id="select-time-title" style="margin-bottom: 20px; font-size: 1.4rem;">Select Date & Time
+                        </h3>
+
+                        <div class="form-group">
+                            <label class="form-label">Pick a Date</label>
+                            <input type="date" id="booking-date" class="form-control">
+                        </div>
+
+                        <div style="margin-top: 30px;">
+                            <h4
+                                style="margin-bottom: 15px; font-size: 1rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px;">
+                                Morning</h4>
+                            <div class="calendar-grid">
+                                <div class="time-slot" onclick="selectTime(this)">09:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">10:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">11:30 AM</div>
+                            </div>
+
+                            <h4
+                                style="margin: 30px 0 15px; font-size: 1rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px;">
+                                Afternoon</h4>
+                            <div class="calendar-grid">
+                                <div class="time-slot" onclick="selectTime(this)">01:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">02:30 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">04:00 PM</div>
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn btn-outline" onclick="prevStep(1)" id="btn-back-1">Back</button>
+                            <button class="btn btn-primary" onclick="nextStep(3)">
+                                <span id="btn-next-2">Next Step</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Details -->
+                    <div id="step-3" class="step-content hidden">
+                        <h3 id="your-info-title" style="margin-bottom: 25px; font-size: 1.4rem;">Your Information</h3>
+                        <form onsubmit="event.preventDefault(); finishBooking();">
+                            <div class="form-group">
+                                <label class="form-label" id="label-fullname">Full Name</label>
+                                <input type="text" id="booking-name" class="form-control" placeholder="John Doe"
+                                    required>
+                                <div class="text-error" id="name-error">Please enter your full name.</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label"><span id="label-phone">Phone Number</span> <span
+                                        style="color: red;">*</span></label>
+                                <input type="tel" id="booking-phone" class="form-control" placeholder="12345678"
+                                    maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                    inputmode="numeric" required>
+                                <div class="text-error" id="phone-error">Please enter a valid 8-digit phone number.
+                                </div>
+                            </div>
+
+                            <div class="step-actions">
+                                <button type="button" class="btn btn-outline" onclick="prevStep(2)"
+                                    id="btn-back-2">Back</button>
+                                <button type="submit" class="btn btn-primary" id="btn-confirm" style="flex: 1;">Confirm
+                                    Booking</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Confirmation -->
+                    <div id="step-4" class="step-content hidden" style="text-align: center; padding: 40px 0;">
+                        <div class="success-icon"
+                            style="width: 100px; height: 100px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 30px; animation: scaleUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h2 id="success-title" style="font-size: 2.2rem; margin-bottom: 15px;">Booking Confirmed!</h2>
+                        <p id="success-desc" style="color: #64748b; margin-bottom: 35px; font-size: 1.1rem;">We have
+                            sent a confirmation email to you. We look forward to seeing you!</p>
+                        <a href="index.html" class="btn btn-primary" id="btn-home"
+                            style="padding: 16px 40px; font-size: 1.1rem;">Return Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <script src="ui-messages.js"></script>
+    <script src="script.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        let currentService = '';
+        let currentTime = '';
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('booking-date').min = today;
+
+        // --- Real-time Validation Handling ---
+        const nameInput = document.getElementById('booking-name');
+        const phoneInput = document.getElementById('booking-phone');
+
+        nameInput.addEventListener('input', () => validateName(false));
+        phoneInput.addEventListener('input', () => validatePhone(false));
+
+        function validateName(showPrompt = true) {
+            const val = nameInput.value.trim();
+            const errorEl = document.getElementById('name-error');
+            const hasSpecialChars = /[^a-zA-Z\s]/.test(val);
+
+            if (val.length < 3 || hasSpecialChars) {
+                nameInput.classList.add('input-error');
+                if (errorEl) {
+                    errorEl.style.display = 'block';
+                    errorEl.innerText = hasSpecialChars ? 'Name cannot contain special characters or numbers.' : 'Name is too short.';
+                }
+                return false;
+            } else {
+                nameInput.classList.remove('input-error');
+                if (errorEl) errorEl.style.display = 'none';
+                return true;
+            }
+        }
+
+        function validatePhone(showPrompt = true) {
+            const val = phoneInput.value.trim();
+            const errorEl = document.getElementById('phone-error');
+            const phoneRegex = /^\d{8}$/;
+
+            if (!phoneRegex.test(val)) {
+                phoneInput.classList.add('input-error');
+                if (errorEl) {
+                    errorEl.style.display = 'block';
+                    errorEl.innerText = 'Phone number must be exactly 8 digits.';
+                }
+                return false;
+            } else {
+                phoneInput.classList.remove('input-error');
+                if (errorEl) errorEl.style.display = 'none';
+                return true;
+            }
+        }
+
+        function selectService(el, service) {
+            document.querySelectorAll('.service-option').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+            currentService = service;
+        }
+
+        function selectTime(el) {
+            document.querySelectorAll('.time-slot').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+            currentTime = el.innerText;
+        }
+
+        function nextStep(step) {
+            if (step === 2 && !currentService) {
+                showToast('Please select a service.', 'warning');
+                return;
+            }
+            if (step === 3) {
+                if (!document.getElementById('booking-date').value) {
+                    showToast('Please select a date.', 'warning');
+                    return;
+                }
+                if (!currentTime) {
+                    showToast('Please pick a time slot.', 'warning');
+                    return;
+                }
+            }
+
+            document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`step-${step}`).classList.remove('hidden');
+
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`step-indicator-${i}`).classList.toggle('active', i <= step);
+            }
+        }
+
+        function prevStep(step) {
+            nextStep(step);
+        }
+
+        function finishBooking() {
+            const isNameValid = validateName();
+            const isPhoneValid = validatePhone();
+
+            if (!isNameValid || !isPhoneValid) {
+                showToast('Please fix the errors in the form.', 'error');
+                return;
+            }
+
+            const booking = {
+                id: Date.now().toString(),
+                service: currentService,
+                price: { 'Checkup': 50, 'Whitening': 200, 'Cleaning': 80 }[currentService] || 40,
+                time: currentTime,
+                date: document.getElementById('booking-date').value,
+                name: nameInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                status: 'Pending'
+            };
+
+            // Save using Utils
+            const bookings = storage.get('smilepro_bookings') || [];
+            bookings.push(booking);
+            storage.set('smilepro_bookings', bookings);
+
+            // Simulation of submission
+            const btn = document.querySelector('#step-3 .btn-primary');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
+                document.getElementById('step-4').classList.remove('hidden');
+            }, 1500);
+        }
+    </script>
+</body>
+
+>>>>>>> origin/main
 </html>

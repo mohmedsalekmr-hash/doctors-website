@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -134,4 +135,142 @@
     </script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SmilePro</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-tooth" style="font-size: 1.5rem; color: var(--secondary);"></i>
+                <span style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.2rem;">SmilePro</span>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="admin-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-grid-2"></i>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                <a href="cms-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span class="sidebar-text">Website Content</span>
+                </a>
+                <a href="appointments.html" class="menu-item">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span class="sidebar-text">Appointments</span>
+                </a>
+                <a href="patients.html" class="menu-item">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span class="sidebar-text">Patients</span>
+                </a>
+                <a href="settings.html" class="menu-item active">
+                    <i class="fa-solid fa-gear"></i>
+                    <span class="sidebar-text">Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="settings-container">
+                <div style="margin-bottom: 30px;">
+                    <h2>Settings</h2>
+                    <p style="color: var(--text-light);">Manage your clinic preferences and account.</p>
+                </div>
+
+                <!-- Account Settings -->
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3><i class="fa-solid fa-user-shield" style="color: var(--primary); margin-right: 10px;"></i>
+                            Admin Profile</h3>
+                        <button class="btn btn-primary" onclick="saveProfile()">Save Changes</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Display Name</label>
+                        <input type="text" class="form-control" value="Dr. Islam">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" value="admin@smilepro.com">
+                    </div>
+                </div>
+
+                <!-- Clinic Settings -->
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3><i class="fa-solid fa-clinic-medical"
+                                style="color: var(--primary); margin-right: 10px;"></i> Clinic Preferences</h3>
+                    </div>
+                    <div class="row-option">
+                        <div>
+                            <strong>Accept New Patients</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;">Allow new users to book
+                                via the website.</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="row-option">
+                        <div>
+                            <strong>Email Notifications</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;">Receive an email for
+                                every new booking.</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="row-option" style="border: none;">
+                        <div>
+                            <strong>Maintenance Mode</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;">Show a maintenance page
+                                to visitors.</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- System Info -->
+                <div style="text-align: center; color: var(--text-light); font-size: 0.9rem; margin-top: 40px;">
+                    <p>SmilePro v1.0.2 • Built for Excellence</p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="ui-messages.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!auth.checkAccess()) return;
+        });
+
+        function saveProfile() {
+            showToast('Profile Updated Successfully', 'success');
+        }
+    </script>
+</body>
+
+>>>>>>> origin/main
 </html>
