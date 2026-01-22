@@ -1,116 +1,109 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
+    const { t, lang, toggleLang, isRTL } = useLanguage();
     const [scrolled, setScrolled] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'Services', path: '/#services' },
-        { name: 'About', path: '/#about' },
-        { name: 'Contact', path: '/contact' },
-        { name: 'My Bookings', path: '/appointments' },
+        { name: t.nav.home, path: '/' },
+        { name: t.nav.services, path: '/#services' },
+        { name: t.nav.about, path: '/#about' },
+        { name: t.nav.contact, path: '/contact' },
     ];
 
-    const isActive = (path) => router.pathname === path;
-
     return (
-        <header
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-lg shadow-lg py-4' : 'bg-transparent py-6'
-                }`}
-        >
-            <div className="container mx-auto px-6 flex justify-between items-center">
-                <Link href="/" className="text-2xl font-bold text-dark flex items-center gap-3 group">
-                    <div className="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-blue-500/20">
+        <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+            <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
+
+                {/* Logo */}
+                <Link href="/" className="flex items-center gap-2 group z-50">
+                    <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">
                         <i className="fa-solid fa-tooth"></i>
                     </div>
-                    <span className="font-outfit tracking-tight">Smile<span className="text-primary group-hover:text-secondary transition-colors">Pro</span></span>
+                    <div className="flex flex-col">
+                        <span className={`text-xl font-bold tracking-widest uppercase font-heading ${scrolled ? 'text-primary' : 'text-primary lg:text-primary'} transition-colors`}>
+                            Smile<span className="text-accent">Pro</span>
+                        </span>
+                        <span className="text-[0.6rem] tracking-[0.2em] uppercase text-text-light hidden md:block">Luxury Dental Care</span>
+                    </div>
                 </Link>
 
                 {/* Desktop Nav */}
-                <nav className="hidden lg:block">
-                    <ul className="flex items-center gap-10">
+                <nav className="hidden lg:flex items-center gap-10">
+                    <ul className="flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <li key={link.name}>
+                            <li key={link.path}>
                                 <Link
                                     href={link.path}
-                                    className={`relative py-2 text-sm font-bold uppercase tracking-widest transition-colors hover:text-primary ${isActive(link.path) ? 'text-primary' : 'text-slate-500'
-                                        }`}
+                                    className={`relative text-sm font-semibold tracking-wide uppercase hover:text-accent transition-colors
+                                        ${router.asPath === link.path ? 'text-accent' : 'text-primary'}`}
                                 >
                                     {link.name}
-                                    {isActive(link.path) && (
-                                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full animate-bounce"></span>
-                                    )}
                                 </Link>
                             </li>
                         ))}
-                        <li>
-                            <Link
-                                href="/booking"
-                                className="bg-primary text-white px-8 py-4 rounded-2xl font-bold text-sm hover:-translate-y-1 transition-all shadow-xl shadow-blue-500/25 flex items-center gap-2"
-                            >
-                                Book Now <i className="fa-solid fa-calendar-check"></i>
-                            </Link>
-                        </li>
                     </ul>
+
+                    <div className="h-6 w-px bg-slate-200"></div>
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={toggleLang}
+                            className="text-sm font-bold text-primary hover:text-accent transition-colors flex items-center gap-2"
+                        >
+                            <i className="fa-solid fa-globe"></i>
+                            {lang === 'en' ? 'العربية' : 'English'}
+                        </button>
+
+                        <Link href="/booking" className="px-6 py-3 bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-accent transition-colors duration-300 shadow-lg hidden xl:block">
+                            {t.nav.book}
+                        </Link>
+                    </div>
                 </nav>
 
-                {/* Mobile Toggle */}
-                <button
-                    className={`lg:hidden w-12 h-12 flex items-center justify-center rounded-2xl transition-all ${scrolled ? 'bg-gray-100 text-dark' : 'bg-white/10 text-white'
-                        }`}
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars-staggered'} text-xl`}></i>
-                </button>
+                {/* Mobile Toggles */}
+                <div className="flex items-center gap-4 lg:hidden z-50">
+                    <button onClick={toggleLang} className={`text-sm font-bold ${scrolled ? 'text-primary' : 'text-primary'}`}>
+                        {lang === 'en' ? 'عربي' : 'EN'}
+                    </button>
+                    <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-primary">
+                        <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars-staggered'}`}></i>
+                    </button>
+                </div>
             </div>
 
-            {/* Mobile Menu */}
-            <div className={`lg:hidden fixed inset-0 z-40 bg-dark/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 transition-all duration-500 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-                }`}>
-                <button
-                    className="absolute top-10 right-10 text-white text-3xl"
-                    onClick={() => setIsOpen(false)}
-                >
-                    <i className="fa-solid fa-xmark"></i>
-                </button>
-
+            {/* Mobile Menu Overlay */}
+            <div className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 transition-all duration-500 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 {navLinks.map((link) => (
                     <Link
-                        key={link.name}
+                        key={link.path}
                         href={link.path}
                         onClick={() => setIsOpen(false)}
-                        className={`text-2xl font-bold font-outfit tracking-wider transition-all hover:text-primary ${isActive(link.path) ? 'text-primary scale-110' : 'text-slate-400'
-                            }`}
+                        className="text-2xl font-heading font-bold text-primary hover:text-accent transition-colors"
                     >
                         {link.name}
                     </Link>
                 ))}
-
+                <div className="w-12 h-px bg-slate-100 my-4"></div>
                 <Link
                     href="/booking"
                     onClick={() => setIsOpen(false)}
-                    className="mt-6 bg-primary text-white px-12 py-5 rounded-3xl font-bold text-xl shadow-2xl shadow-blue-500/40"
+                    className="px-8 py-4 bg-primary text-white rounded-none text-sm font-bold uppercase tracking-widest shadow-xl"
                 >
-                    Book Appointment
+                    {t.nav.book}
                 </Link>
-
-                <div className="absolute bottom-20 flex gap-6 text-slate-500 text-xl">
-                    <i className="fa-brands fa-facebook"></i>
-                    <i className="fa-brands fa-twitter"></i>
-                    <i className="fa-brands fa-instagram"></i>
-                </div>
             </div>
         </header>
     );

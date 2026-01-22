@@ -17,7 +17,7 @@ export default function Footer({ data }) {
     ];
 
     return (
-        <footer className="bg-[#0f172a] pt-24 pb-12 font-plus">
+        <footer className="bg-dark pt-24 pb-12 font-sans">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-20 border-b border-white/5">
                     <div className="space-y-8 text-center md:text-left">

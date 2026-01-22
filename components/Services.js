@@ -1,35 +1,41 @@
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function Services() {
-    const services = [
-        { title: 'General Dentistry', desc: 'Routine check-ups, cleanings, and preventative care to keep your smile healthy.', icon: 'fa-tooth' },
-        { title: 'Cosmetic Dentistry', desc: 'Transform your smile with veneers, whitening, and bonding for a perfect look.', icon: 'fa-wand-magic-sparkles' },
-        { title: 'Dental Implants', desc: 'Permanent and natural-looking solutions for missing teeth using top tech.', icon: 'fa-tooth' },
-        { title: 'Pediatric Dentistry', desc: 'Gentle and fun dental care experiences tailored specifically for children.', icon: 'fa-child' },
-        { title: 'Orthodontics', desc: 'Straighten your teeth with modern braces and clear aligners like Invisalign.', icon: 'fa-teeth-open' },
-        { title: 'Emergency Care', desc: 'Immediate attention for toothaches and urgent issues available 24/7.', icon: 'fa-notes-medical' },
-    ];
+    const { t } = useLanguage();
 
     return (
-        <section id="services" className="py-24 bg-white">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-16 max-w-2xl mx-auto">
-                    <span className="text-primary font-bold tracking-widest uppercase text-sm mb-3 block">Expertise</span>
-                    <h2 className="text-4xl font-bold text-dark mb-4">Comprehensive Dental Care</h2>
-                    <p className="text-text-light">We offer a wide range of specialized treatments to ensure your dental health remains in peak condition at all times.</p>
+        <section id="services" className="py-24 bg-surface">
+            <div className="container mx-auto px-6 lg:px-12">
+                <div className="text-center mb-16">
+                    <span className="text-accent font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
+                        {t.services.title}
+                    </span>
+                    <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary">
+                        {t.services.subtitle}
+                    </h2>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((s, idx) => (
-                        <div key={idx} className="bg-white p-8 rounded-lgg border border-gray-100 hover:border-primary/20 hover:shadow-2xl hover:shadow-blue-50 transition-all group">
-                            <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                                <i className={`fa-solid ${s.icon}`}></i>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+                    {t.services.items.map((service, idx) => (
+                        <div key={idx} className="group cursor-pointer">
+                            <div className="mb-6 relative overflow-hidden h-64 w-full bg-slate-100">
+                                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-500 z-10"></div>
+                                {/* Placeholder for high-end service imagery */}
+                                <img
+                                    src={`https://source.unsplash.com/random/800x600?dental,${idx}`}
+                                    alt={service.title}
+                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0"
+                                />
+                                <div className="absolute bottom-4 right-4 z-20 w-10 h-10 bg-white flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+                                    <i className="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                                </div>
                             </div>
-                            <h3 className="text-xl font-bold text-dark mb-4">{s.title}</h3>
-                            <p className="text-text-light leading-relaxed mb-6">
-                                {s.desc}
+                            <h3 className="text-xl font-bold text-primary mb-2 group-hover:text-accent transition-colors">
+                                {service.title}
+                            </h3>
+                            <p className="text-text-light text-sm leading-relaxed border-t border-slate-100 pt-4 mt-2">
+                                {service.desc}
                             </p>
-                            <button className="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all uppercase text-xs tracking-widest">
-                                Learn More <i className="fa-solid fa-arrow-right"></i>
-                            </button>
                         </div>
                     ))}
                 </div>
