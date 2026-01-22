@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - SmilePro</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0e8af0;
+            --primary-dark: #0b69b6;
+            --secondary: #0ea5e9;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text-gray: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        /* Left Side - Brand Area */
+        .brand-section {
+            flex: 1;
+            background: linear-gradient(135deg, #0e8af0 0%, #0ea5e9 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 40px;
+            position: relative;
+        }
+
+        .brand-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+        }
+
+        .brand-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .brand-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        /* Right Side - Login Form */
+        .login-section {
+            width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: white;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .login-header {
+            margin-bottom: 40px;
+        }
+
+        .login-header h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .login-header p {
+            color: var(--text-gray);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 14px 14px 45px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(14, 138, 240, 0.1);
+        }
+
+        .form-control:focus+i {
+            color: var(--primary);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(14, 138, 240, 0.2);
+        }
+
+        .btn-login:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(14, 138, 240, 0.3);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .forgot-password a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+                overflow-y: auto;
+            }
+
+            .brand-section {
+                padding: 40px 20px;
+                flex: inherit;
+                height: 250px;
+            }
+
+            .login-section {
+                width: 100%;
+                padding: 40px 20px;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .brand-text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Left Branding -->
+    <div class="brand-section">
+        <div class="brand-content">
+            <div class="logo"><i class="fa-solid fa-tooth"></i> SmilePro</div>
+            <p class="brand-text">Manage your clinic efficiently with our premium dashboard. Secure, fast, and reliable.
+            </p>
+        </div>
+    </div>
+
+    <!-- Right Login Form -->
+    <div class="login-section">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p>Please sign in to access your dashboard.</p>
+            </div>
+
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" class="form-control" placeholder="admin@smilepro.com"
+                            value="admin@smilepro.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" class="form-control" placeholder="••••••••" value="password" required>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login">Sign In <i class="fa-solid fa-arrow-right"
+                        style="margin-left: 8px;"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="ui-messages.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.querySelector('.btn-login');
+            const originalHtml = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing In...';
+            btn.disabled = true;
+            btn.style.opacity = '0.8';
+
+            // Simulate API Call
+            setTimeout(() => {
+                auth.login(); // Using the modular helper
+                window.location.href = 'admin-dashboard.html';
+            }, 1200);
+        }
+
+        // Redirect if already logged in
+        if (storage.get('smilepro_session')) {
+            window.location.href = 'admin-dashboard.html';
+        }
+    </script>
+</body>
+
+</html>

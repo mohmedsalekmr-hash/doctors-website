@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SmilePro</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-tooth" style="font-size: 1.8rem; color: var(--primary);"></i>
+                <span>SmilePro</span>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="admin-dashboard.html" class="menu-item active">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                <a href="cms-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span class="sidebar-text">Website CMS</span>
+                </a>
+                <a href="appointments.html" class="menu-item">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span class="sidebar-text">Appointments</span>
+                </a>
+                <a href="patients.html" class="menu-item">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="sidebar-text">Patients</span>
+                </a>
+                <a href="settings.html" class="menu-item">
+                    <i class="fa-solid fa-gears"></i>
+                    <span class="sidebar-text">Settings</span>
+                </a>
+                <div style="margin-top: 50px; padding: 0 20px;">
+                    <button class="btn btn-outline"
+                        style="width: 100%; border-color: rgba(255,255,255,0.1); color: #94a3b8;"
+                        onclick="auth.logout()">
+                        <i class="fa-solid fa-right-from-bracket"></i> <span class="sidebar-text">Logout</span>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="top-bar">
+                <div>
+                    <h2 id="welcome-text">Clinic Overview</h2>
+                    <p style="color: var(--text-light);">Welcome back, Dr. Islam. Here's your performance snapshot.</p>
+                </div>
+                <div class="header-actions" style="display: flex; gap: 15px; align-items: center;">
+                    <div style="text-align: right; margin-right: 15px;">
+                        <span style="display: block; font-weight: 700; font-size: 0.9rem;">Dr. Islam</span>
+                        <span style="display: block; font-size: 0.75rem; color: #16a34a;"><i class="fa-solid fa-circle"
+                                style="font-size: 0.5rem; vertical-align: middle;"></i> Online</span>
+                    </div>
+                    <div class="user-avatar"
+                        style="width: 45px; height: 45px; font-size: 1.1rem; background: var(--primary);">DI</div>
+                </div>
+            </div>
+
+            <!-- Enhanced Premium Stats -->
+            <div class="stats-grid" style="margin-bottom: 40px;">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(14, 138, 240, 0.1); color: var(--primary);">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="stat-today">0</h3>
+                        <p>Today's Appointments</p>
+                    </div>
+                    <div style="margin-left: auto; color: #16a34a; font-size: 0.8rem; font-weight: 700;">
+                        <i class="fa-solid fa-arrow-up"></i> 12%
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(0, 210, 180, 0.1); color: var(--secondary);">
+                        <i class="fa-solid fa-hospital-user"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="stat-patients">0</h3>
+                        <p>Total Patients</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="stat-pending">0</h3>
+                        <p>Pending Requests</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="stat-revenue">$0</h3>
+                        <p>Monthly Revenue</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+                <!-- Recent Activity Table -->
+                <div class="table-container" style="margin: 0;">
+                    <div class="table-header">
+                        <h3><i class="fa-solid fa-list-check" style="color: var(--primary); margin-right: 10px;"></i>
+                            Recent Activity</h3>
+                        <a href="appointments.html" class="btn btn-outline"
+                            style="padding: 8px 15px; font-size: 0.8rem; text-decoration: none;">View All</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Patient</th>
+                                <th>Service</th>
+                                <th>Schedule</th>
+                                <th>Contact</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="dashboard-tbody">
+                            <!-- Injected by admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Quick Actions & Alerts -->
+                <div style="display: flex; flex-direction: column; gap: 25px;">
+                    <div class="cms-section" style="padding: 25px; margin: 0;">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 20px; color: #1e293b;"><i class="fa-solid fa-bolt"
+                                style="color: #f59e0b;"></i> Quick Actions</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <a href="booking.html" class="btn btn-primary"
+                                style="padding: 15px 5px; font-size: 0.8rem; text-decoration: none; text-align: center;">
+                                <i class="fa-solid fa-plus-circle"></i> New Booking
+                            </a>
+                            <a href="cms-dashboard.html" class="btn btn-outline"
+                                style="padding: 15px 5px; font-size: 0.8rem; text-decoration: none; text-align: center;">
+                                <i class="fa-solid fa-globe"></i> Edit Site
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="cms-section" style="padding: 25px; margin: 0; background: #0f172a; color: white;">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: white;"><i
+                                class="fa-solid fa-bell"></i> System Health</h3>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                                <span style="color: #94a3b8;">Database</span>
+                                <span style="color: #16a34a;">Stable</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                                <span style="color: #94a3b8;">Website Sync</span>
+                                <span style="color: #16a34a;">Active</span>
+                            </div>
+                            <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;">
+                                <div style="width: 85%; height: 100%; background: var(--primary); border-radius: 2px;">
+                                </div>
+                            </div>
+                            <p style="font-size: 0.75rem; color: #64748b;">Storage: 1.2GB/10GB Used (12%)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Appointment Modal -->
+    <div id="edit-modal" class="custom-modal-overlay">
+        <div class="custom-modal-card edit-booking-modal">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-calendar-check"></i> Edit Appointment</h3>
+                <button class="close-modal" onclick="closeEditModal()">&times;</button>
+            </div>
+            <form id="edit-booking-form" onsubmit="saveBookingChanges(event)">
+                <input type="hidden" id="edit-booking-id">
+
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="edit-name" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Service Type</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-tooth"></i>
+                        <select id="edit-service" class="form-control" required>
+                            <option value="Checkup">General Checkup</option>
+                            <option value="Whitening">Teeth Whitening</option>
+                            <option value="Cleaning">Deep Cleaning</option>
+                            <option value="Root Canal">Root Canal</option>
+                            <option value="Consultation">Consultation</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Appointment Date</label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-calendar"></i>
+                            <input type="date" id="edit-date" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Time Slot</label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-clock"></i>
+                            <input type="time" id="edit-time" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-preview">
+                    <div class="preview-badge">Schedule Preview</div>
+                    <div class="preview-display">
+                        <div class="preview-date">
+                            <i class="fa-solid fa-calendar-day"></i>
+                            <span id="preview-date-text">Select Date</span>
+                        </div>
+                        <div class="preview-time">
+                            <i class="fa-solid fa-clock"></i>
+                            <span id="preview-time-text">Select Time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="ui-messages.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        // Security Check
+        if (auth.checkAccess()) {
+            // Only load dashboard if authorized
+            const script = document.createElement('script');
+            script.src = 'admin.js';
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+
+</html>
