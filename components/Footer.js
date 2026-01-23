@@ -9,51 +9,61 @@ export default function Footer() {
         'Dental Implants',
         'Orthodontics',
         'Teeth Whitening',
-        'General Checkup'
+        'Executive Checkup'
     ];
 
     const quickLinks = [
         { name: t.nav.home, path: '/' },
         { name: t.nav.about, path: '/#about' },
         { name: t.nav.services, path: '/#services' },
-        { name: t.nav.contact, path: '/contact' },
+        { name: t.nav.contact, path: '/#contact' },
     ];
 
     return (
-        <footer className="bg-text-dark pt-24 pb-12 overflow-hidden relative">
-            {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary opacity-[0.03] rounded-full blur-[100px] -z-10"></div>
+        <footer className="bg-primary pt-32 pb-16 overflow-hidden relative">
+            {/* Atmospheric Background Mastery */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-luxury-gold/5 rounded-full blur-[120px]"></div>
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-[100px]"></div>
+                <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle, #C5A572 1px, transparent 1px)', backgroundSize: '50px 50px' }}></div>
+            </div>
 
-            <div className="container-custom">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 pb-20 border-b border-white/10">
-                    <div className="space-y-8">
-                        <Link href="/" className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center text-xl shadow-lg">
-                                <i className="fa-solid fa-tooth"></i>
+            <div className="container-custom relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 pb-24 border-b border-white/10">
+                    <div className="space-y-10">
+                        {/* Luxury Logo Branding */}
+                        <Link href="/" className="flex items-center gap-4 group">
+                            <div className="w-12 h-12 bg-white/5 border border-white/20 rounded-2xl flex-center group-hover:bg-luxury-gold transition-all duration-700">
+                                <i className="fa-solid fa-tooth text-luxury-gold group-hover:text-primary text-xl"></i>
                             </div>
-                            <span className="text-2xl font-bold text-white font-heading tracking-tight">
-                                Smile<span className="text-primary-light">Pro</span>
-                            </span>
+                            <div className="flex flex-col">
+                                <span className="text-2xl font-bold text-white font-heading tracking-tighter leading-none">
+                                    Smile<span className="font-serif italic font-normal text-luxury-gold ml-0.5">Pro</span>
+                                </span>
+                                <span className="text-[0.55rem] font-bold tracking-[0.3em] uppercase text-white/40 mt-1">Esthetic Studio</span>
+                            </div>
                         </Link>
-                        <p className="text-white/50 leading-relaxed">
-                            Leading dental clinic providing world-class oral care with modern technology and a human touch. Your smile is our priority.
+
+                        <p className="text-white/40 leading-relaxed font-medium text-sm max-w-xs">
+                            Architecting refined smiles through artistic clinical mastery and avant-garde dental innovation. The pinnacle of personalized oral care.
                         </p>
-                        <div className="flex gap-4">
+
+                        <div className="flex gap-5">
                             {['facebook-f', 'instagram', 'twitter', 'linkedin-in'].map(social => (
-                                <a key={social} href="#" className="w-10 h-10 bg-white/5 text-white/40 rounded-xl flex items-center justify-center hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1 border border-white/5">
-                                    <i className={`fa-brands fa-${social}`}></i>
+                                <a key={social} href="#" className="w-10 h-10 bg-white/5 text-white/30 rounded-xl flex-center hover:bg-luxury-gold hover:text-primary transition-all duration-500 border border-white/5 group">
+                                    <i className={`fa-brands fa-${social} text-sm`}></i>
                                 </a>
                             ))}
                         </div>
                     </div>
 
                     <div>
-                        <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-xs opacity-50">Treatments</h4>
-                        <ul className="space-y-4">
+                        <h4 className="text-luxury-gold font-bold mb-10 uppercase tracking-[0.3em] text-[0.65rem]">Dental Masteries</h4>
+                        <ul className="space-y-5">
                             {treatments.map(item => (
                                 <li key={item}>
-                                    <a href="#" className="text-white/60 hover:text-primary transition-colors flex items-center gap-2 group">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-primary/30 group-hover:bg-primary transition-colors"></span>
+                                    <a href="#" className="text-white/50 hover:text-luxury-gold transition-all duration-500 text-sm font-medium flex items-center gap-3 group">
+                                        <div className="w-1 h-1 rounded-full bg-luxury-gold/30 group-hover:scale-150 transition-transform"></div>
                                         {item}
                                     </a>
                                 </li>
@@ -62,11 +72,11 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-xs opacity-50">Quick Links</h4>
-                        <ul className="space-y-4">
+                        <h4 className="text-luxury-gold font-bold mb-10 uppercase tracking-[0.3em] text-[0.65rem]">Corporate Board</h4>
+                        <ul className="space-y-5">
                             {quickLinks.map(link => (
                                 <li key={link.name}>
-                                    <Link href={link.path} className="text-white/60 hover:text-primary transition-colors">
+                                    <Link href={link.path} className="text-white/50 hover:text-luxury-gold transition-all duration-500 text-sm font-medium">
                                         {link.name}
                                     </Link>
                                 </li>
@@ -75,41 +85,36 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-xs opacity-50">Contact Us</h4>
-                        <ul className="space-y-6">
-                            <li className="flex gap-4 items-start">
-                                <div className="text-primary mt-1">
+                        <h4 className="text-luxury-gold font-bold mb-10 uppercase tracking-[0.3em] text-[0.65rem]">Private Reception</h4>
+                        <ul className="space-y-8">
+                            <li className="flex gap-5 items-start">
+                                <div className="text-luxury-gold mt-1 text-sm">
                                     <i className="fa-solid fa-location-dot"></i>
                                 </div>
-                                <p className="text-white/60 text-sm leading-relaxed">
-                                    123 Dental Street, Medical District, <br />Wellness City, WC 45678
+                                <p className="text-white/40 text-sm leading-relaxed font-medium">
+                                    123 Elite Plaza, <br />Upper Medical District, <br />Global City 889
                                 </p>
                             </li>
-                            <li className="flex gap-4 items-center">
-                                <div className="text-primary">
-                                    <i className="fa-solid fa-phone"></i>
+                            <li className="flex gap-5 items-center">
+                                <div className="text-luxury-gold text-sm">
+                                    <i className="fa-solid fa-phone-volume"></i>
                                 </div>
-                                <p className="text-white font-bold">+1 (555) 000-1234</p>
-                            </li>
-                            <li className="flex gap-4 items-center">
-                                <div className="text-primary">
-                                    <i className="fa-solid fa-envelope"></i>
-                                </div>
-                                <p className="text-white/60 text-sm">contact@smilepro.com</p>
+                                <p className="text-white font-bold tracking-tight text-lg">+1 (555) 000-1234</p>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <div className="pt-12 flex flex-col md:flex-row items-center justify-between gap-6 opacity-30">
-                    <p className="text-white text-xs">© 2026 SmilePro. All rights reserved.</p>
-                    <div className="flex gap-8 text-xs text-white">
-                        <a href="#" className="hover:text-primary">Privacy Policy</a>
-                        <a href="#" className="hover:text-primary">Terms of Service</a>
+                <div className="pt-16 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <p className="text-white/20 text-[0.6rem] font-bold uppercase tracking-[0.4em]">© 2026 SmilePro International. Curated by Excellence.</p>
+                    <div className="flex gap-10 text-[0.6rem] font-bold uppercase tracking-[0.2em]">
+                        <a href="#" className="text-white/20 hover:text-luxury-gold transition-colors">Privacy Charter</a>
+                        <a href="#" className="text-white/20 hover:text-luxury-gold transition-colors">Service Protocols</a>
                     </div>
                 </div>
             </div>
         </footer>
     );
 }
+
 

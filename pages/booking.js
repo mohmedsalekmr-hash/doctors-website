@@ -56,39 +56,46 @@ export default function Booking() {
     if (isSubmitted) {
         return (
             <Layout>
-                <div className="min-h-screen bg-surface-light flex items-center justify-center pt-20 px-6">
-                    <div className="max-w-2xl w-full bg-white rounded-[3rem] shadow-premium p-12 lg:p-20 text-center relative overflow-hidden animate-fade-in-up">
-                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-blue-400"></div>
+                <div className="min-h-screen bg-surface-cream flex items-center justify-center pt-24 px-8">
+                    <div className="max-w-3xl w-full bg-white rounded-[4rem] shadow-luxury p-16 lg:p-24 text-center relative overflow-hidden animate-fade-in-up border border-luxury-gold/10">
+                        {/* Elite Success Header */}
+                        <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-luxury-gold via-primary to-luxury-gold"></div>
 
-                        <div className="w-24 h-24 bg-green-50 text-green-500 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-10 shadow-sm border border-green-100">
-                            <i className="fa-solid fa-check-double scale-110"></i>
+                        <div className="relative mb-12">
+                            <div className="w-28 h-28 bg-surface-cream text-luxury-gold rounded-[2rem] flex-center text-5xl mx-auto shadow-sm border border-luxury-gold/20 animate-scale-in">
+                                <i className="fa-solid fa-envelope-open-text"></i>
+                            </div>
+                            <div className="absolute -inset-4 border border-luxury-gold/10 rounded-[2.5rem] animate-pulse"></div>
                         </div>
 
-                        <h2 className="text-4xl lg:text-5xl font-heading font-bold text-text-dark mb-6">
-                            {t.contact.form.success_title}
+                        <h2 className="text-5xl lg:text-7xl font-heading font-bold text-primary mb-8 leading-tight">
+                            {isRTL ? 'تم استلام طلبك الملكي' : (
+                                <>Awaiting Your <br /><span className="font-serif italic font-normal text-gradient-gold">Grand Entrance</span></>
+                            )}
                         </h2>
 
-                        <p className="text-lg text-text-light leading-relaxed mb-10 max-w-md mx-auto font-medium">
+                        <p className="text-xl text-luxury-slate leading-relaxed mb-12 max-w-lg mx-auto font-medium">
                             {t.contact.form.success_msg}
                         </p>
 
-                        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-primary/5 text-primary font-bold text-sm mb-12 border border-primary/10">
-                            <i className="fa-solid fa-clock-rotate-left"></i>
+                        <div className="inline-flex items-center gap-4 px-8 py-4 rounded-[2rem] bg-surface-cream text-primary font-bold text-sm mb-16 border border-luxury-gold/20 shadow-sm animate-fade-in delay-500">
+                            <i className="fa-solid fa-paper-plane text-luxury-gold"></i>
                             {t.contact.form.time_estimate}
                         </div>
 
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Link href="/" className="btn-premium px-10 py-5 bg-primary text-white rounded-2xl w-full sm:w-auto font-bold shadow-premium">
-                                {t.contact.form.back_home}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                            <Link href="/" className="btn-premium px-12 py-6 bg-primary text-white rounded-[2rem] w-full sm:w-auto font-bold uppercase tracking-[0.2em] shadow-luxury flex-center gap-4 group">
+                                <span>{t.contact.form.back_home}</span>
+                                <i className={`fa-solid ${isRTL ? 'fa-arrow-left-long' : 'fa-arrow-right-long'} text-luxury-gold group-hover:translate-x-2 transition-transform`}></i>
                             </Link>
-                            <button onClick={() => setIsSubmitted(false)} className="px-10 py-5 text-text-light font-bold hover:text-primary transition-colors">
-                                {isRTL ? 'تعديل الطلب' : 'Modify Request'}
+                            <button onClick={() => setIsSubmitted(false)} className="px-10 py-5 text-luxury-slate font-bold uppercase tracking-[0.15em] hover:text-primary transition-all">
+                                {isRTL ? 'تعديل التفاصيل' : 'Refine Details'}
                             </button>
                         </div>
 
-                        {/* Background Decoration */}
-                        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
-                        <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-400/5 rounded-full blur-3xl"></div>
+                        {/* Background Ambiance */}
+                        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-luxury-gold/5 rounded-full blur-[100px]"></div>
+                        <div className="absolute -top-20 -left-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px]"></div>
                     </div>
                 </div>
             </Layout>
@@ -98,145 +105,149 @@ export default function Booking() {
     return (
         <Layout>
             <Head>
-                <title>{t.nav.book} | SmilePro</title>
+                <title>{t.nav.book} | SmilePro Elite</title>
             </Head>
 
-            <div className="min-h-screen bg-surface-light pt-32 pb-20 relative overflow-hidden">
-                {/* Background Decoration */}
-                <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
-                <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-secondary/30 rounded-full blur-[100px]"></div>
+            <div className="min-h-screen bg-surface-cream pt-32 pb-24 relative overflow-hidden">
+                {/* Background Mastery */}
+                <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-luxury-blue/30 rounded-full blur-[150px] pointer-events-none"></div>
+                <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-luxury-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
 
                 <div className="container-custom relative z-10">
-                    <div className="max-w-5xl mx-auto">
-                        <div className="text-center mb-16 lg:mb-20">
-                            <h1 className="text-4xl lg:text-6xl font-heading font-bold text-text-dark mb-6">
-                                {isRTL ? 'احجز موعدك' : 'Schedule Your Visit'}
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-20 lg:mb-28">
+                            <div className="reveal-text mb-6">
+                                <span className="inline-flex items-center gap-3 text-luxury-gold font-bold text-[0.7rem] uppercase tracking-[0.4em] animate-fade-in">
+                                    <span className="w-8 h-px bg-luxury-gold"></span>
+                                    The First Step to Mastery
+                                </span>
+                            </div>
+                            <h1 className="text-6xl lg:text-8xl font-heading font-bold text-primary mb-8 leading-tight">
+                                {isRTL ? 'احجز استشارتك الخاصة' : (
+                                    <>Reserve Your <br /><span className="font-serif italic font-normal text-luxury-gold">Private Consultation</span></>
+                                )}
                             </h1>
-                            <p className="text-lg text-text-light max-w-2xl mx-auto leading-relaxed">
-                                Join over 15,000 happy patients. Choose your preferred time and service, and we'll take care of the rest.
+                            <p className="text-xl text-luxury-slate max-w-2xl mx-auto leading-relaxed font-medium">
+                                Curate your personal aesthetic journey with our world-class specialists in an environment of absolute discretion and comfort.
                             </p>
                         </div>
 
-                        <div className="bg-white rounded-[3rem] shadow-premium overflow-hidden border border-slate-100 flex flex-col lg:flex-row min-h-[700px]">
-                            {/* Left Side: Info & Visual */}
-                            <div className="lg:w-[40%] bg-primary relative p-12 lg:p-16 flex flex-col justify-between text-white overflow-hidden">
-                                {/* Abstract BG Pattern */}
-                                <div className="absolute top-0 left-0 w-full h-full opacity-10">
-                                    <div className="absolute -top-10 -right-10 w-48 h-48 border-[20px] border-white rounded-full"></div>
-                                    <div className="absolute bottom-20 -left-10 w-32 h-32 border-[10px] border-white rotate-45"></div>
-                                </div>
+                        <div className="bg-white rounded-[4rem] shadow-luxury overflow-hidden border border-luxury-gold/10 flex flex-col lg:flex-row min-h-[800px] animate-scale-in">
+                            {/* Prestige Information Sidebar */}
+                            <div className="lg:w-[35%] bg-primary relative p-16 lg:p-20 flex flex-col justify-between text-white overflow-hidden">
+                                {/* Elegant Texture Overlay */}
+                                <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, #C5A572 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-luxury-gold/10 rounded-full blur-[80px]"></div>
 
                                 <div className="relative z-10">
-                                    <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-3xl mb-12 border border-white/20">
-                                        <i className="fa-solid fa-calendar-check text-white"></i>
+                                    <div className="w-20 h-20 bg-white/5 rounded-[1.5rem] flex-center text-4xl mb-12 border border-white/10 shadow-sm">
+                                        <i className="fa-solid fa-calendar-plus text-luxury-gold"></i>
                                     </div>
-                                    <h2 className="text-3xl font-bold font-heading mb-6">{isRTL ? 'لماذا تختارنا؟' : 'Why SmilePro?'}</h2>
-                                    <ul className="space-y-6">
+                                    <h2 className="text-3xl font-bold font-heading mb-8 leading-tight">{isRTL ? 'معايير النخبة' : 'Elite Standards'}</h2>
+                                    <ul className="space-y-10">
                                         {[
-                                            { icon: 'fa-user-doctor', text: isRTL ? 'أطباء معتمدون دولياً' : 'Board Certified Specialists' },
-                                            { icon: 'fa-shield-heart', text: isRTL ? 'رعاية متميزة ومرتكزة على المريض' : 'Patient-Centered Premium Care' },
-                                            { icon: 'fa-microscope', text: isRTL ? 'أحدث تكنولوجيا طب الأسنان' : 'State-of-the-Art Dental Tech' }
+                                            { icon: 'fa-chess-king', text: isRTL ? 'خبرة فنية عالمية' : 'Artistic Clinical Mastery' },
+                                            { icon: 'fa-vault', text: isRTL ? 'خصوصية مطلقة' : 'Absolute Patient Privacy' },
+                                            { icon: 'fa-gem', text: isRTL ? 'مواد فاخرة عالمية' : 'World-Class Premium Materials' }
                                         ].map((item, i) => (
-                                            <li key={i} className="flex items-center gap-4">
-                                                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-xs shrink-0 border border-white/20">
-                                                    <i className={`fa-solid ${item.icon}`}></i>
+                                            <li key={i} className="flex items-start gap-5 group">
+                                                <div className="w-10 h-10 rounded-xl bg-white/10 flex-center text-sm shrink-0 border border-white/10 group-hover:bg-luxury-gold transition-all duration-500">
+                                                    <i className={`fa-solid ${item.icon} text-luxury-gold group-hover:text-primary`}></i>
                                                 </div>
-                                                <span className="font-medium text-white/90">{item.text}</span>
+                                                <span className="font-bold text-white/80 text-sm tracking-wide mt-2">{item.text}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
 
-                                <div className="relative z-10 pt-12 mt-12 border-t border-white/10">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 bg-slate-200">
-                                            <img src="/images/doctor.png" alt="Doctor" className="w-full h-full object-cover" />
-                                        </div>
-                                        <div>
-                                            <p className="text-sm font-bold">Dr. Islam</p>
-                                            <p className="text-xs text-white/60">Lead Consultant</p>
-                                        </div>
+                                <div className="relative z-10 pt-12 mt-12 border-t border-white/10 flex items-center gap-6">
+                                    <div className="w-14 h-14 rounded-2xl overflow-hidden border border-white/20 bg-slate-200 shadow-lg">
+                                        <img src="/images/doctor.png" alt="Director" className="w-full h-full object-cover" />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-bold text-luxury-gold uppercase tracking-widest mb-1 leading-none">Medical Director</p>
+                                        <p className="text-lg font-bold font-heading leading-none">Islam Salek</p>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Right Side: Form */}
-                            <div className="lg:w-[60%] p-10 lg:p-20">
-                                <form onSubmit={handleSubmit} className="space-y-10">
-                                    <div className="grid md:grid-cols-2 gap-10">
+                            {/* Precise Interaction Form */}
+                            <div className="lg:w-[65%] p-12 lg:p-24 bg-white relative">
+                                <form onSubmit={handleSubmit} className="space-y-12">
+                                    <div className="grid md:grid-cols-2 gap-12">
                                         <div className="group relative">
-                                            <label className={`text-xs font-bold uppercase tracking-widest transition-colors block mb-4 ${validation.name.valid === false ? 'text-red-500' : 'text-text-light group-focus-within:text-primary'}`}>
+                                            <label className={`text-[0.65rem] font-bold uppercase tracking-[0.3em] transition-colors block mb-1 ${validation.name.valid === false ? 'text-red-500' : 'text-luxury-slate group-focus-within:text-luxury-gold'}`}>
                                                 {t.contact.form.name}
                                             </label>
                                             <div className="relative">
                                                 <input
                                                     type="text"
-                                                    placeholder="e.g. John Doe"
-                                                    className={`w-full bg-transparent border-b-2 py-4 outline-none transition-all text-lg font-medium placeholder:text-slate-300 ${validation.name.valid === false ? 'border-red-500' : 'border-slate-100 focus:border-primary'}`}
+                                                    placeholder="Curated Name"
+                                                    className={`w-full bg-transparent border-b py-5 outline-none transition-all text-xl font-bold placeholder:text-slate-100 placeholder:font-normal ${validation.name.valid === false ? 'border-red-500 text-red-500' : 'border-luxury-slate/20 focus:border-luxury-gold text-primary'}`}
                                                     value={formData.name}
                                                     onChange={(e) => handleInputChange('name', e.target.value)}
                                                     required
                                                 />
-                                                <div className={`absolute right-0 bottom-4 transition-colors ${validation.name.valid === false ? 'text-red-500' : validation.name.valid === true ? 'text-green-500' : 'text-slate-300 group-focus-within:text-primary'}`}>
-                                                    <i className={`fa-solid ${validation.name.valid === false ? 'fa-circle-xmark' : validation.name.valid === true ? 'fa-circle-check' : 'fa-user'}`}></i>
+                                                <div className={`absolute right-0 bottom-6 transition-colors ${validation.name.valid === false ? 'text-red-500' : validation.name.valid === true ? 'text-green-500' : 'text-slate-200 group-focus-within:text-luxury-gold'}`}>
+                                                    <i className={`fa-solid ${validation.name.valid === false ? 'fa-circle-xmark' : validation.name.valid === true ? 'fa-circle-check' : 'fa-signature text-xs'}`}></i>
                                                 </div>
                                             </div>
-                                            {validation.name.valid === false && <p className="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-tighter">{validation.name.msg}</p>}
+                                            {validation.name.valid === false && <p className="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-widest">{validation.name.msg}</p>}
                                         </div>
 
                                         <div className="group relative">
-                                            <label className={`text-xs font-bold uppercase tracking-widest transition-colors block mb-4 ${validation.phone.valid === false ? 'text-red-500' : 'text-text-light group-focus-within:text-primary'}`}>
+                                            <label className={`text-[0.65rem] font-bold uppercase tracking-[0.3em] transition-colors block mb-1 ${validation.phone.valid === false ? 'text-red-500' : 'text-luxury-slate group-focus-within:text-luxury-gold'}`}>
                                                 {t.contact.form.phone}
                                             </label>
                                             <div className="relative">
                                                 <input
                                                     type="tel"
-                                                    placeholder="+1 (555) 000-0000"
-                                                    className={`w-full bg-transparent border-b-2 py-4 outline-none transition-all text-lg font-medium placeholder:text-slate-300 ${validation.phone.valid === false ? 'border-red-500' : 'border-slate-100 focus:border-primary'}`}
+                                                    placeholder="Secure Contact Number"
+                                                    className={`w-full bg-transparent border-b py-5 outline-none transition-all text-xl font-bold placeholder:text-slate-100 placeholder:font-normal ${validation.phone.valid === false ? 'border-red-500 text-red-500' : 'border-luxury-slate/20 focus:border-luxury-gold text-primary'}`}
                                                     value={formData.phone}
                                                     onChange={(e) => handleInputChange('phone', e.target.value)}
                                                     required
                                                 />
-                                                <div className={`absolute right-0 bottom-4 transition-colors ${validation.phone.valid === false ? 'text-red-500' : validation.phone.valid === true ? 'text-green-500' : 'text-slate-300 group-focus-within:text-primary'}`}>
-                                                    <i className={`fa-solid ${validation.phone.valid === false ? 'fa-circle-xmark' : validation.phone.valid === true ? 'fa-circle-check' : 'fa-phone'}`}></i>
+                                                <div className={`absolute right-0 bottom-6 transition-colors ${validation.phone.valid === false ? 'text-red-500' : validation.phone.valid === true ? 'text-green-500' : 'text-slate-200 group-focus-within:text-luxury-gold'}`}>
+                                                    <i className={`fa-solid ${validation.phone.valid === false ? 'fa-circle-xmark' : validation.phone.valid === true ? 'fa-circle-check' : 'fa-phone-lock text-xs'}`}></i>
                                                 </div>
                                             </div>
-                                            {validation.phone.valid === false && <p className="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-tighter">{validation.phone.msg}</p>}
+                                            {validation.phone.valid === false && <p className="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-widest">{validation.phone.msg}</p>}
                                         </div>
                                     </div>
 
                                     <div className="group relative">
-                                        <label className="text-xs font-bold uppercase tracking-widest text-text-light group-focus-within:text-primary transition-colors block mb-4">
-                                            {isRTL ? 'نوع الخدمة' : 'Type of Service'}
+                                        <label className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-luxury-slate group-focus-within:text-luxury-gold transition-colors block mb-1">
+                                            {isRTL ? 'نوع الخدمة' : 'Clinical Objective'}
                                         </label>
                                         <div className="relative">
                                             <select
-                                                className="w-full bg-transparent border-b-2 border-slate-100 py-4 outline-none focus:border-primary transition-all text-lg font-medium appearance-none cursor-pointer"
+                                                className="w-full bg-transparent border-b border-luxury-slate/20 py-5 outline-none focus:border-luxury-gold transition-all text-xl font-bold text-primary appearance-none cursor-pointer"
                                                 value={formData.service}
                                                 onChange={(e) => handleInputChange('service', e.target.value)}
                                                 required
                                             >
-                                                <option value="">{isRTL ? 'اختر الخدمة...' : 'Choose a service...'}</option>
-                                                <option value="Cosmetic">{isRTL ? 'تجميل الأسنان' : 'Cosmetic Dentistry'}</option>
-                                                <option value="Implants">{isRTL ? 'زراعة الأسنان' : 'Dental Implants'}</option>
-                                                <option value="Checkup">{isRTL ? 'فحص دوري' : 'General Checkup'}</option>
-                                                <option value="Ortho">{isRTL ? 'تقويم الأسنان' : 'Orthodontics'}</option>
+                                                <option value="" disabled className="text-slate-400">{isRTL ? 'اختر التخصص...' : 'Select Specialty...'}</option>
+                                                <option value="Cosmetic">{isRTL ? 'تجميل الأسنان' : 'Esthetic Smile Design'}</option>
+                                                <option value="Implants">{isRTL ? 'زراعة الأسنان' : 'Elite Implantology'}</option>
+                                                <option value="Checkup">{isRTL ? 'فحص دوري' : 'Executive Screening'}</option>
+                                                <option value="Ortho">{isRTL ? 'تقويم الأسنان' : 'Advanced Orthodontics'}</option>
                                             </select>
-                                            <div className="absolute right-0 bottom-4 text-slate-300 pointer-events-none group-focus-within:text-primary transition-colors">
-                                                <i className="fa-solid fa-chevron-down"></i>
+                                            <div className="absolute right-0 bottom-6 text-luxury-gold/50 pointer-events-none group-focus-within:text-luxury-gold transition-colors">
+                                                <i className="fa-solid fa-chevron-down text-xs"></i>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="grid md:grid-cols-2 gap-10">
+                                    <div className="grid md:grid-cols-2 gap-12">
                                         <div className="group relative">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-text-light group-focus-within:text-primary transition-colors block mb-4">
-                                                {isRTL ? 'التاريخ' : 'Preferred Date'}
+                                            <label className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-luxury-slate group-focus-within:text-luxury-gold transition-colors block mb-1">
+                                                {isRTL ? 'التاريخ' : 'Reserved Date'}
                                             </label>
                                             <div className="relative">
                                                 <input
                                                     type="date"
-                                                    className="w-full bg-transparent border-b-2 border-slate-100 py-4 outline-none focus:border-primary transition-all text-lg font-medium"
+                                                    className="w-full bg-transparent border-b border-luxury-slate/20 py-5 outline-none focus:border-luxury-gold transition-all text-xl font-bold text-primary"
                                                     value={formData.date}
                                                     onChange={(e) => handleInputChange('date', e.target.value)}
                                                     required
@@ -245,41 +256,42 @@ export default function Booking() {
                                         </div>
 
                                         <div className="group relative">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-text-light group-focus-within:text-primary transition-colors block mb-4">
-                                                {isRTL ? 'الوقت' : 'Preferred Time'}
+                                            <label className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-luxury-slate group-focus-within:text-luxury-gold transition-colors block mb-1">
+                                                {isRTL ? 'الوقت' : 'Preferred Window'}
                                             </label>
                                             <div className="relative">
                                                 <select
-                                                    className="w-full bg-transparent border-b-2 border-slate-100 py-4 outline-none focus:border-primary transition-all text-lg font-medium appearance-none cursor-pointer"
+                                                    className="w-full bg-transparent border-b border-luxury-slate/20 py-5 outline-none focus:border-luxury-gold transition-all text-xl font-bold text-primary appearance-none cursor-pointer"
                                                     value={formData.time}
                                                     onChange={(e) => handleInputChange('time', e.target.value)}
                                                     required
                                                 >
-                                                    <option value="">{isRTL ? 'اختر الوقت...' : 'Select time...'}</option>
+                                                    <option value="" disabled className="text-slate-400">{isRTL ? 'اختر الوقت...' : 'Select Window...'}</option>
                                                     <option value="09:00">09:00 AM</option>
                                                     <option value="11:00">11:00 AM</option>
                                                     <option value="13:00">01:00 PM</option>
                                                     <option value="15:00">03:00 PM</option>
                                                     <option value="17:00">05:00 PM</option>
                                                 </select>
-                                                <div className="absolute right-0 bottom-4 text-slate-300 pointer-events-none group-focus-within:text-primary transition-colors">
-                                                    <i className="fa-solid fa-clock"></i>
+                                                <div className="absolute right-0 bottom-6 text-luxury-gold/50 pointer-events-none group-focus-within:text-luxury-gold transition-colors">
+                                                    <i className="fa-solid fa-clock-ten text-xs"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="pt-6">
+                                    <div className="pt-10">
                                         <button
                                             type="submit"
                                             disabled={!validation.name.valid || !validation.phone.valid}
-                                            className="btn-premium w-full py-6 bg-primary text-white rounded-[2rem] text-lg font-bold shadow-premium hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="btn-premium w-full py-7 bg-primary text-white rounded-[2.5rem] text-[0.85rem] font-bold uppercase tracking-[0.3em] shadow-luxury hover:bg-luxury-gold hover:text-primary disabled:opacity-30 disabled:grayscale transition-all"
                                         >
-                                            {t.contact.form.submit}
+                                            {isRTL ? 'إرسال طلب الاستشارة' : 'Confirm Consultation Request'}
                                         </button>
-                                        <p className="text-center text-xs text-text-light mt-6 font-medium">
-                                            {isRTL ? 'لا يلزم وجود بطاقة ائتمان. سنؤكد موعدك هاتفياً.' : 'No credit card required. We will confirm your visit via phone.'}
-                                        </p>
+                                        <div className="flex items-center justify-center gap-4 mt-10 text-[0.6rem] font-bold text-luxury-slate uppercase tracking-[0.2em]">
+                                            <i className="fa-solid fa-shield-halved text-luxury-gold"></i>
+                                            {isRTL ? 'تشفير بيانات النخبة مفعل' : 'Elite Data Encryption Active'}
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -290,5 +302,6 @@ export default function Booking() {
         </Layout>
     );
 }
+
 
 

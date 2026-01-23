@@ -8,50 +8,59 @@ module.exports = {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: '#004AAD', // Professional Deep Blue
-                    light: '#1E90FF',   // Bright Medical Blue
-                    dark: '#00337C',
+                    DEFAULT: '#0F172A', // Deep Midnight/Charcoal
+                    blue: '#004AAD',     // High-End Medical Blue
+                    light: '#1E40AF',
                 },
-                secondary: {
-                    DEFAULT: '#E6F0FF', // Very Light Sky Blue
-                    alt: '#F0F7FF',
+                luxury: {
+                    ivory: '#FDFBF7',    // Premium Cream Background
+                    gold: '#C5A572',     // Muted Champagne Gold
+                    charcoal: '#1A1A1A', // Rich Dark Text
+                    blue: '#F0F7FF',     // Soft Medical Blue
+                    slate: '#475569',    // Elegant Gray
                 },
                 accent: {
-                    DEFAULT: '#D4AF37', // Refined Gold
-                    silver: '#E5E7EB',
+                    DEFAULT: '#C5A572',
+                    pearl: '#F8FAFC',
                 },
                 surface: {
                     DEFAULT: '#FFFFFF',
-                    light: '#F9FBFF',
-                    gray: '#F3F4F6',
+                    cream: '#FAF9F6',
+                    glass: 'rgba(255, 255, 255, 0.7)',
                 },
                 text: {
-                    dark: '#111827',    // Gray-900
-                    base: '#374151',    // Gray-700
-                    light: '#6B7280',   // Gray-500
+                    dark: '#0F172A',
+                    muted: '#64748B',
+                    gold: '#B68D40',
                 }
             },
             fontFamily: {
                 sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
                 heading: ['Outfit', 'system-ui', 'sans-serif'],
+                serif: ['Playfair Display', 'serif'], // For ultra-luxury touches
                 arabic: ['Cairo', 'sans-serif'],
             },
             borderRadius: {
                 '4xl': '2rem',
                 '5xl': '2.5rem',
+                '6xl': '3rem',
             },
             boxShadow: {
-                'premium': '0 20px 50px rgba(0, 74, 173, 0.05)',
-                'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+                'premium': '0 25px 60px -15px rgba(0, 0, 0, 0.05)',
+                'luxury': '0 10px 40px -10px rgba(197, 165, 114, 0.15)',
+                'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.04)',
+                'floating': '0 30px 60px -12px rgba(0, 0, 0, 0.08)',
             },
             animation: {
-                'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                'fade-in': 'fadeIn 1s ease-out forwards',
-                'float': 'float 6s ease-in-out infinite',
+                'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                'fade-in': 'fadeIn 1.2s ease-out forwards',
+                'float': 'float 8s ease-in-out infinite',
+                'reveal': 'reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards',
+                'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
             },
             keyframes: {
                 fadeInUp: {
-                    '0%': { opacity: '0', transform: 'translateY(30px)' },
+                    '0%': { opacity: '0', transform: 'translateY(40px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },
                 },
                 fadeIn: {
@@ -60,10 +69,19 @@ module.exports = {
                 },
                 float: {
                     '0%, 100%': { transform: 'translateY(0)' },
-                    '50%': { transform: 'translateY(-20px)' },
+                    '50%': { transform: 'translateY(-15px)' },
+                },
+                reveal: {
+                    '0%': { transform: 'translateY(100%)', opacity: '0' },
+                    '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+                scaleIn: {
+                    '0%': { transform: 'scale(0.9)', opacity: '0' },
+                    '100%': { transform: 'scale(1)', opacity: '1' },
                 }
             }
         },
     },
     plugins: [],
 }
+
