@@ -38,8 +38,32 @@ export const translations = {
                 email: 'Email Address',
                 phone: 'Phone Number',
                 message: 'Message',
-                submit: 'Send Request'
+                submit: 'Send Request',
+                success_title: 'Appointment Requested!',
+                success_msg: 'Thank you for choosing SmilePro. Our medical coordinators will contact you within the next 2 hours to finalize your visit.',
+                time_estimate: 'Estimated contact in: 1h 45m',
+                back_home: 'Back to Home'
             }
+        },
+        appointments: {
+            title: 'My Appointments',
+            subtitle: 'View, manage, or reschedule your upcoming visits with ease.',
+            find_label: 'Find Your Booking',
+            phone_placeholder: 'Enter your phone number...',
+            no_results: 'No appointments found',
+            no_results_sub: 'Try searching with a different phone number or book a new session.',
+            id_label: 'ID',
+            adjust_btn: 'Reschedule',
+            cancel_btn: 'Cancel Visit',
+            modal_edit_title: 'Modify Appointment',
+            modal_cancel_title: 'Cancel Appointment?',
+            modal_cancel_msg: 'Are you sure you want to cancel this booking? This action cannot be undone.',
+            modal_keep: 'No, Keep It',
+            modal_confirm_cancel: 'Yes, Cancel It',
+            modal_save: 'Update Appointment',
+            modal_name: 'Patient Name',
+            modal_date: 'New Date',
+            modal_time: 'New Time'
         }
     },
     ar: {
@@ -71,14 +95,38 @@ export const translations = {
         },
         contact: {
             title: 'تواصل معنا',
-            desc: 'نتطلع للترحيب بكم.',
+            desc: 'نتطلع للرحب بكم.',
             form: {
                 name: 'الاسم الكامل',
                 email: 'البريد الإلكتروني',
                 phone: 'رقم الهاتف',
                 message: 'الرسالة',
-                submit: 'أرسل الطلب'
+                submit: 'أرسل الطلب',
+                success_title: 'تم استلام طلب الحجز!',
+                success_msg: 'شكراً لاختيارك SmilePro. سيتواصل معك منسقو المواعيد لدينا خلال الساعتين القادمتين لتأكيد موعدك.',
+                time_estimate: 'وقت التواصل المتوقع: ساعة و 45 دقيقة',
+                back_home: 'العودة للرئيسية'
             }
+        },
+        appointments: {
+            title: 'مواعيدي',
+            subtitle: 'عرض أو تعديل أو إلغاء زياراتك القادمة بكل سهولة.',
+            find_label: 'ابحث عن حجزك',
+            phone_placeholder: 'أدخل رقم هاتفك...',
+            no_results: 'لم يتم العثور على مواعيد',
+            no_results_sub: 'حاول البحث برقم هاتف مختلف أو احجز جلسة جديدة.',
+            id_label: 'رقم الحجز',
+            adjust_btn: 'تعديل الموعد',
+            cancel_btn: 'إلغاء الزيارة',
+            modal_edit_title: 'تعديل الموعد',
+            modal_cancel_title: 'إلغاء الموعد؟',
+            modal_cancel_msg: 'هل أنت متأكد أنك تريد إلغاء هذا الحجز؟ لا يمكن التراجع عن هذا الإجراء.',
+            modal_keep: 'لا، احتفظ به',
+            modal_confirm_cancel: 'نعم، قم بالإلغاء',
+            modal_save: 'تحديث الموعد',
+            modal_name: 'اسم المريض',
+            modal_date: 'التاريخ الجديد',
+            modal_time: 'الوقت الجديد'
         }
     }
 };

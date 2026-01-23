@@ -1,41 +1,63 @@
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function Services() {
-    const { t } = useLanguage();
+    const { t, isRTL } = useLanguage();
+
+    const icons = [
+        'fa-wand-magic-sparkles',
+        'fa-tooth',
+        'fa-align-center',
+        'fa-stethoscope'
+    ];
+
+    const colors = [
+        'bg-blue-50 text-blue-600',
+        'bg-indigo-50 text-indigo-600',
+        'bg-cyan-50 text-cyan-600',
+        'bg-sky-50 text-sky-600'
+    ];
 
     return (
-        <section id="services" className="py-24 bg-surface">
-            <div className="container mx-auto px-6 lg:px-12">
-                <div className="text-center mb-16">
-                    <span className="text-accent font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
+        <section id="services" className="section-padding bg-surface-light relative overflow-hidden">
+            {/* Background Accent */}
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div className="container-custom relative z-10">
+                <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-24">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm text-primary font-bold text-xs uppercase tracking-widest mb-6 animate-fade-in border border-slate-100">
+                        <span className="w-2 h-2 rounded-full bg-primary-light animate-pulse"></span>
                         {t.services.title}
-                    </span>
-                    <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary">
+                    </div>
+                    <h2 className="text-4xl lg:text-6xl font-heading font-bold text-text-dark mb-6">
                         {t.services.subtitle}
                     </h2>
+                    <p className="text-lg text-text-light max-w-2xl mx-auto">
+                        We offer a comprehensive range of premium dental services, tailored to your unique needs using the latest clinical innovations.
+                    </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {t.services.items.map((service, idx) => (
-                        <div key={idx} className="group cursor-pointer">
-                            <div className="mb-6 relative overflow-hidden h-64 w-full bg-slate-100">
-                                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-500 z-10"></div>
-                                {/* Placeholder for high-end service imagery */}
-                                <img
-                                    src={`https://source.unsplash.com/random/800x600?dental,${idx}`}
-                                    alt={service.title}
-                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0"
-                                />
-                                <div className="absolute bottom-4 right-4 z-20 w-10 h-10 bg-white flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-colors duration-300">
-                                    <i className="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
-                                </div>
+                        <div
+                            key={idx}
+                            className="group bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-premium hover:-translate-y-2 transition-all duration-500 hover:border-primary/20"
+                        >
+                            <div className={`w-16 h-16 ${colors[idx]} rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform duration-500 shadow-sm`}>
+                                <i className={`fa-solid ${icons[idx]}`}></i>
                             </div>
-                            <h3 className="text-xl font-bold text-primary mb-2 group-hover:text-accent transition-colors">
+
+                            <h3 className="text-2xl font-bold text-text-dark mb-4 group-hover:text-primary transition-colors">
                                 {service.title}
                             </h3>
-                            <p className="text-text-light text-sm leading-relaxed border-t border-slate-100 pt-4 mt-2">
+
+                            <p className="text-text-base leading-relaxed mb-6">
                                 {service.desc}
                             </p>
+
+                            <a href="#contact" className="inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:gap-3 transition-all">
+                                Learn More
+                                <i className={`fa-solid ${isRTL ? 'fa-arrow-left' : 'fa-arrow-right'} text-xs`}></i>
+                            </a>
                         </div>
                     ))}
                 </div>
@@ -43,3 +65,4 @@ export default function Services() {
         </section>
     );
 }
+

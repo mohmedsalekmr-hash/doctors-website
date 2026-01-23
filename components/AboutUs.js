@@ -1,59 +1,86 @@
-export default function AboutUs({ data }) {
-    const { heading, p1, p2 } = data || {
-        heading: "Leading the Way in Dental Excellence",
-        p1: "At SmilePro, we believe that every patient deserves the best possible dental care. Our state-of-the-art facility is equipped with the latest technology.",
-        p2: "Led by Dr. Islam and a team of certified specialists, we have been serving the community for over 10 years, creating thousands of beautiful smiles."
-    };
+import { useLanguage } from '@/context/LanguageContext';
+
+export default function AboutUs() {
+    const { t, isRTL } = useLanguage();
+
+    const stats = [
+        { label: "Modern Clinics", value: "05" },
+        { label: "Expert Doctors", value: "12+" },
+        { label: "Global Awards", value: "08" },
+        { label: "Happy Patients", value: "15k" }
+    ];
 
     return (
-        <section className="py-24 bg-surface" id="about">
-            <div className="container mx-auto px-6">
-                <div className="flex flex-col lg:flex-row items-center gap-20">
+        <section id="about" className="section-padding bg-white relative overflow-hidden">
+            <div className="container-custom">
+                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                    {/* Image Column */}
                     <div className="flex-1 relative order-2 lg:order-1">
-                        <div className="relative z-10 rounded-[32px] overflow-hidden shadow-2xl shadow-slate-200">
-                            <img
-                                src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&auto=format&fit=crop&q=80"
-                                alt="Our Clinic"
-                                className="w-full h-[500px] object-cover hover:scale-105 transition-transform duration-700"
-                            />
+                        <div className="relative z-10">
+                            <div className="relative rounded-[3rem] overflow-hidden shadow-premium border-[10px] border-white ring-1 ring-slate-100">
+                                <img
+                                    src="/images/doctor.png"
+                                    alt="Expert Doctor"
+                                    className="w-full h-full object-cover aspect-[4/5] hover:scale-105 transition-transform duration-700"
+                                />
+                            </div>
+
+                            {/* Floating Experience Badge */}
+                            <div className="absolute -bottom-8 -right-8 glass-panel p-8 rounded-[2.5rem] shadow-premium animate-float">
+                                <div className="text-center">
+                                    <p className="text-4xl font-bold font-heading text-primary mb-1">15+</p>
+                                    <p className="text-xs font-bold uppercase tracking-widest text-text-light whitespace-nowrap">Years of Experience</p>
+                                </div>
+                            </div>
                         </div>
 
-                        {/* Experience Badge */}
-                        <div className="absolute -bottom-10 -right-10 bg-white p-8 rounded-[32px] flex flex-col items-center justify-center shadow-floating z-20 border border-slate-100 max-w-[200px]">
-                            <span className="text-5xl font-bold font-heading text-primary bg-primary/5 px-2 rounded-lg mb-2">10+</span>
-                            <span className="text-xs font-bold uppercase tracking-widest text-center text-dark">Years of Excellence</span>
-                        </div>
+                        {/* Background Decoration */}
+                        <div className="absolute -top-10 -left-10 w-40 h-40 bg-secondary/50 rounded-full blur-3xl -z-10"></div>
                     </div>
 
+                    {/* Content Column */}
                     <div className="flex-1 order-1 lg:order-2">
-                        <div className="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-xs font-bold mb-6 tracking-widest uppercase">
-                            Since 2012
-                        </div>
-                        <h2 className="text-4xl lg:text-5xl font-bold text-dark font-heading mb-8 leading-tight">
-                            {heading}
-                        </h2>
-                        <div className="space-y-6 text-lg text-text-secondary leading-relaxed font-medium">
-                            <p>{p1}</p>
-                            <p>{p2}</p>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-primary font-bold text-xs uppercase tracking-widest mb-8">
+                            <i className="fa-solid fa-user-doctor"></i>
+                            Expert Medical Team
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
-                            {[
-                                { title: "Modern Technology", desc: "Latest dental equipment" },
-                                { title: "Expert Doctors", desc: "Certified specialists" },
-                                { title: "Affordable Plans", desc: "Flexible payment options" },
-                                { title: "Emergency Care", desc: "24/7 priority support" }
-                            ].map((item, idx) => (
-                                <div key={idx} className="flex items-start gap-4 p-5 rounded-xl border border-slate-100 hover:border-primary/20 hover:bg-slate-50 transition-colors">
-                                    <div className="w-6 h-6 bg-secondary text-white rounded-full flex items-center justify-center text-[10px] shrink-0 mt-1">
-                                        <i className="fa-solid fa-check"></i>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-dark text-sm mb-1">{item.title}</h4>
-                                        <p className="text-xs text-text-secondary">{item.desc}</p>
-                                    </div>
+                        <h2 className="text-4xl lg:text-6xl font-heading font-bold text-text-dark mb-8 leading-tight">
+                            Redefining the <span className="text-gradient">Dental Experience</span> with Care.
+                        </h2>
+
+                        <div className="space-y-6 text-lg text-text-base leading-relaxed mb-12">
+                            <p>
+                                At SmilePro, we believe that visiting the dentist should be a restorative experience for both your smile and your mind. Our clinic mimics the comfort of a high-end spa, combined with the precision of modern medical technology.
+                            </p>
+                            <p>
+                                From the moment you step in, you are treated with the utmost care, privacy, and personalized attention. Our team of specialists is dedicated to styling your perfect smile using the most advanced techniques available today.
+                            </p>
+                        </div>
+
+                        {/* Mini Stats */}
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 p-8 rounded-3xl bg-surface-light border border-slate-100 shadow-sm">
+                            {stats.map((stat, idx) => (
+                                <div key={idx} className="text-center">
+                                    <p className="text-2xl font-bold text-primary mb-1">{stat.value}</p>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-text-light">{stat.label}</p>
                                 </div>
                             ))}
+                        </div>
+
+                        <div className="mt-12 flex flex-wrap gap-6">
+                            <div className="flex items-center gap-3">
+                                <div className="w-6 h-6 rounded-full bg-green-50 text-green-500 flex items-center justify-center text-[10px]">
+                                    <i className="fa-solid fa-check"></i>
+                                </div>
+                                <span className="text-sm font-bold text-text-dark">ADA Certified</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="w-6 h-6 rounded-full bg-green-50 text-green-500 flex items-center justify-center text-[10px]">
+                                    <i className="fa-solid fa-check"></i>
+                                </div>
+                                <span className="text-sm font-bold text-text-dark">Digital Workflow</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -61,3 +88,4 @@ export default function AboutUs({ data }) {
         </section>
     );
 }
+

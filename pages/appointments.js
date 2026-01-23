@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
+import Head from 'next/head';
 import Layout from '@/components/Layout';
 import { storage } from '@/utils/storage';
 
 export default function Appointments() {
+    const { t, isRTL } = useLanguage();
     const [appointments, setAppointments] = useState([]);
     const [searchPhone, setSearchPhone] = useState('');
     const [filtered, setFiltered] = useState([]);
@@ -12,14 +15,14 @@ export default function Appointments() {
     useEffect(() => {
         const data = storage.get('smilepro_bookings') || [];
         setAppointments(data);
-        setFiltered(data);
+        setFiltered([]); // Start empty to encourage search
     }, []);
 
     const handleSearch = (e) => {
         const val = e.target.value;
         setSearchPhone(val);
         if (!val) {
-            setFiltered(appointments);
+            setFiltered([]);
         } else {
             setFiltered(appointments.filter(a => a.phone.includes(val)));
         }
@@ -44,88 +47,111 @@ export default function Appointments() {
 
     return (
         <Layout>
-            <div className="pt-32 pb-20 bg-gray-50/50 min-h-screen">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <h1 className="text-4xl font-bold text-dark mb-4">My Appointments</h1>
-                        <p className="text-text-light text-lg">View, manage, or reschedule your upcoming visits with ease.</p>
+            <Head>
+                <title>{t.appointments.title} | SmilePro</title>
+            </Head>
+
+            <div className="min-h-screen bg-surface-light pt-32 pb-20 relative overflow-hidden">
+                {/* Background Decoration */}
+                <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
+                <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-secondary/30 rounded-full blur-[100px]"></div>
+
+                <div className="container-custom relative z-10">
+                    <div className="text-center mb-16 lg:mb-20">
+                        <h1 className="text-4xl lg:text-6xl font-heading font-bold text-text-dark mb-6">
+                            {t.appointments.title}
+                        </h1>
+                        <p className="text-lg text-text-light max-w-2xl mx-auto leading-relaxed">
+                            {t.appointments.subtitle}
+                        </p>
                     </div>
 
-                    <div className="max-w-xl mx-auto mb-12">
-                        <div className="bg-white p-6 rounded-lgg shadow-sm border border-gray-100">
-                            <label className="block text-xs font-bold text-gray-400 mb-3 uppercase tracking-widest text-center">Find Your Booking</label>
+                    <div className="max-w-2xl mx-auto mb-16">
+                        <div className="bg-white p-8 lg:p-10 rounded-[2.5rem] shadow-premium border border-slate-100 relative group transition-all duration-300 focus-within:ring-2 focus-within:ring-primary/10">
+                            <label className="block text-xs font-bold text-text-light mb-4 uppercase tracking-widest text-center group-focus-within:text-primary transition-colors">
+                                {t.appointments.find_label}
+                            </label>
                             <div className="relative">
-                                <i className="fa-solid fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-primary"></i>
+                                <i className="fa-solid fa-phone absolute left-6 top-1/2 -translate-y-1/2 text-2xl text-slate-300 group-focus-within:text-primary transition-colors"></i>
                                 <input
                                     type="tel"
-                                    placeholder="Enter your phone number..."
+                                    placeholder={t.appointments.phone_placeholder}
                                     value={searchPhone}
                                     onChange={handleSearch}
-                                    className="w-full p-4 pl-12 bg-gray-50 border-2 border-gray-100 rounded-xl focus:border-primary outline-none transition-all text-center text-xl font-bold tracking-widest"
+                                    className="w-full p-6 pl-16 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none transition-all text-center text-2xl lg:text-3xl font-bold tracking-widest text-primary focus:bg-white focus:border-primary/20"
                                 />
                             </div>
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filtered.length > 0 ? filtered.map((a) => (
-                            <div key={a.id} className={`bg-white rounded-lgg p-6 border-l-8 shadow-sm hover:shadow-md transition-all ${a.status === 'Cancelled' ? 'border-red-400 opacity-75' : 'border-primary'
-                                }`}>
-                                <div className="flex justify-between items-start mb-6">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center text-xl">
-                                            <i className={`fa-solid ${a.service.includes('Whitening') ? 'fa-wand-magic-sparkles' : 'fa-tooth'}`}></i>
+                            <div key={a.id} className={`bg-white rounded-[2.5rem] p-8 lg:p-10 border border-slate-100 shadow-premium hover:-translate-y-2 transition-all duration-500 relative overflow-hidden ${a.status === 'Cancelled' ? 'opacity-75 grayscale-[0.5]' : ''}`}>
+                                {a.status !== 'Cancelled' && (
+                                    <div className="absolute top-0 left-0 w-2 h-full bg-primary/20"></div>
+                                )}
+
+                                <div className="flex justify-between items-start mb-8">
+                                    <div className="flex items-center gap-5">
+                                        <div className="w-14 h-14 bg-primary/5 text-primary rounded-2xl flex items-center justify-center text-2xl">
+                                            <i className="fa-solid fa-tooth"></i>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-dark">{a.service}</h3>
-                                            <span className="text-[10px] text-gray-400 font-bold uppercase">ID: #{a.id.slice(-6)}</span>
+                                            <h3 className="font-bold text-text-dark text-lg leading-tight">{a.service}</h3>
+                                            <span className="text-[10px] text-text-light font-bold uppercase tracking-widest">{t.appointments.id_label}: #{a.id.slice(-6)}</span>
                                         </div>
                                     </div>
-                                    <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full ${a.status === 'Cancelled' ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-600'
-                                        }`}>
+                                    <span className={`text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full ${a.status === 'Cancelled' ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-600'}`}>
                                         {a.status}
                                     </span>
                                 </div>
 
-                                <div className="space-y-3 mb-8">
-                                    <div className="flex items-center gap-3 text-sm text-text-light">
-                                        <i className="fa-regular fa-calendar-days text-primary w-4"></i>
-                                        <span className="font-semibold text-dark">{a.date}</span>
+                                <div className="space-y-4 mb-10">
+                                    <div className="flex items-center gap-4 text-text-base">
+                                        <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-primary/60">
+                                            <i className="fa-regular fa-calendar-days"></i>
+                                        </div>
+                                        <span className="font-bold">{a.date}</span>
                                     </div>
-                                    <div className="flex items-center gap-3 text-sm text-text-light">
-                                        <i className="fa-regular fa-clock text-primary w-4"></i>
-                                        <span className="font-semibold text-dark">{a.time}</span>
-                                    </div>
-                                    <div className="flex items-center gap-3 text-sm text-text-light">
-                                        <i className="fa-regular fa-user text-primary w-4"></i>
-                                        <span>{a.name}</span>
+                                    <div className="flex items-center gap-4 text-text-base">
+                                        <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-primary/60">
+                                            <i className="fa-regular fa-clock"></i>
+                                        </div>
+                                        <span className="font-bold">{a.time}</span>
                                     </div>
                                 </div>
 
                                 {a.status !== 'Cancelled' && (
-                                    <div className="flex gap-3">
+                                    <div className="flex gap-4">
                                         <button
                                             onClick={() => setEditing(a)}
-                                            className="flex-1 py-3 bg-gray-50 text-dark font-bold rounded-xl text-xs hover:bg-gray-100 transition-all border border-gray-100"
+                                            className="flex-1 py-4 bg-slate-50 text-text-dark font-bold rounded-2xl text-xs hover:bg-primary hover:text-white transition-all duration-300 border border-slate-100"
                                         >
-                                            <i className="fa-solid fa-pen-to-square mr-2"></i> Adjust
+                                            <i className="fa-solid fa-calendar-pen mr-2"></i> {t.appointments.adjust_btn}
                                         </button>
                                         <button
                                             onClick={() => setCancelling(a)}
-                                            className="flex-1 py-3 bg-red-50 text-red-500 font-bold rounded-xl text-xs hover:bg-red-100 transition-all border border-red-100"
+                                            className="px-6 py-4 bg-red-50 text-red-500 font-bold rounded-2xl text-xs hover:bg-red-500 hover:text-white transition-all duration-300 border border-red-100"
+                                            title={t.appointments.cancel_btn}
                                         >
-                                            <i className="fa-solid fa-ban mr-2"></i> Cancel
+                                            <i className="fa-solid fa-trash-can"></i>
                                         </button>
                                     </div>
                                 )}
                             </div>
-                        )) : (
-                            <div className="col-span-full py-20 text-center">
-                                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-400 text-3xl">
+                        )) : searchPhone && (
+                            <div className="col-span-full py-24 text-center animate-fade-in">
+                                <div className="w-24 h-24 bg-slate-50 rounded-[2rem] flex items-center justify-center mx-auto mb-8 text-slate-300 text-4xl border border-slate-100">
                                     <i className="fa-regular fa-calendar-xmark"></i>
                                 </div>
-                                <h3 className="text-xl font-bold text-dark mb-2">No appointments found</h3>
-                                <p className="text-text-light">Try searching with a different phone number or book a new session.</p>
+                                <h3 className="text-2xl font-bold text-text-dark mb-3">{t.appointments.no_results}</h3>
+                                <p className="text-text-light max-w-sm mx-auto">{t.appointments.no_results_sub}</p>
+                            </div>
+                        )}
+                        {!searchPhone && (
+                            <div className="col-span-full py-24 text-center opacity-40">
+                                <i className="fa-solid fa-magnifying-glass text-6xl mb-6"></i>
+                                <p className="text-xl font-medium tracking-wide font-heading">{isRTL ? 'انتظار رقم الهاتف...' : 'Awaiting Phone Search...'}</p>
                             </div>
                         )}
                     </div>
@@ -134,50 +160,66 @@ export default function Appointments() {
 
             {/* Edit Modal */}
             {editing && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-dark/60 backdrop-blur-sm animate-fadeIn">
-                    <div className="bg-white w-full max-w-lg rounded-[2rem] p-8 md:p-12 shadow-2xl relative">
-                        <button onClick={() => setEditing(null)} className="absolute top-6 right-6 text-2xl text-gray-400 hover:text-dark">
-                            &times;
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-text-dark/80 backdrop-blur-md animate-fade-in">
+                    <div className="bg-white w-full max-w-lg rounded-[3rem] p-10 lg:p-14 shadow-2xl relative border border-white/20">
+                        <button onClick={() => setEditing(null)} className="absolute top-8 right-8 w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 text-slate-400 hover:text-text-dark transition-colors">
+                            <i className="fa-solid fa-xmark"></i>
                         </button>
-                        <h3 className="text-2xl font-bold text-dark mb-8">Edit Appointment</h3>
-                        <form onSubmit={handleUpdate} className="space-y-6">
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="col-span-2">
-                                    <label className="block text-xs font-bold text-gray-400 mb-2 uppercase">Full Name</label>
+
+                        <div className="mb-10 text-center">
+                            <div className="w-20 h-20 bg-primary/5 text-primary rounded-[1.5rem] flex items-center justify-center text-3xl mx-auto mb-6">
+                                <i className="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <h3 className="text-3xl font-bold text-text-dark font-heading">{t.appointments.modal_edit_title}</h3>
+                        </div>
+
+                        <form onSubmit={handleUpdate} className="space-y-8">
+                            <div className="space-y-6">
+                                <div className="group relative">
+                                    <label className="text-[10px] font-bold uppercase tracking-widest text-text-light group-focus-within:text-primary block mb-3">{t.appointments.modal_name}</label>
                                     <input
-                                        className="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-xl outline-none"
+                                        className="w-full p-5 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none focus:bg-white focus:border-primary/20 transition-all font-bold text-text-dark"
                                         value={editing.name}
                                         onChange={(e) => setEditing({ ...editing, name: e.target.value })}
+                                        disabled
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-xs font-bold text-gray-400 mb-2 uppercase">Date</label>
-                                    <input
-                                        type="date"
-                                        className="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-xl outline-none"
-                                        value={editing.date}
-                                        onChange={(e) => setEditing({ ...editing, date: e.target.value })}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-xs font-bold text-gray-400 mb-2 uppercase">Time</label>
-                                    <select
-                                        className="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-xl outline-none"
-                                        value={editing.time}
-                                        onChange={(e) => setEditing({ ...editing, time: e.target.value })}
-                                    >
-                                        <option>09:00 AM</option>
-                                        <option>10:00 AM</option>
-                                        <option>11:30 AM</option>
-                                        <option>01:00 PM</option>
-                                        <option>02:30 PM</option>
-                                        <option>04:00 PM</option>
-                                    </select>
+
+                                <div className="grid grid-cols-2 gap-6">
+                                    <div className="group relative">
+                                        <label className="text-[10px] font-bold uppercase tracking-widest text-text-light group-focus-within:text-primary block mb-3">{t.appointments.modal_date}</label>
+                                        <input
+                                            type="date"
+                                            className="w-full p-5 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none focus:bg-white focus:border-primary/20 transition-all font-bold text-text-dark"
+                                            value={editing.date}
+                                            onChange={(e) => setEditing({ ...editing, date: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="group relative">
+                                        <label className="text-[10px] font-bold uppercase tracking-widest text-text-light group-focus-within:text-primary block mb-3">{t.appointments.modal_time}</label>
+                                        <select
+                                            className="w-full p-5 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none focus:bg-white focus:border-primary/20 transition-all font-bold text-text-dark appearance-none"
+                                            value={editing.time}
+                                            onChange={(e) => setEditing({ ...editing, time: e.target.value })}
+                                        >
+                                            <option>09:00 AM</option>
+                                            <option>10:00 AM</option>
+                                            <option>11:30 AM</option>
+                                            <option>01:00 PM</option>
+                                            <option>02:30 PM</option>
+                                            <option>04:00 PM</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="flex gap-4 pt-4">
-                                <button type="button" onClick={() => setEditing(null)} className="flex-1 py-4 font-bold border-2 border-gray-100 rounded-xl">Cancel</button>
-                                <button type="submit" className="flex-1 py-4 bg-primary text-white font-bold rounded-xl">Save Changes</button>
+
+                            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                                <button type="submit" className="flex-1 btn-premium py-5 bg-primary text-white font-bold rounded-2xl shadow-premium">
+                                    {t.appointments.modal_save}
+                                </button>
+                                <button type="button" onClick={() => setEditing(null)} className="flex-1 py-5 font-bold text-text-light hover:text-text-dark transition-colors">
+                                    {isRTL ? 'إلغاء' : 'Cancel'}
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -186,16 +228,20 @@ export default function Appointments() {
 
             {/* Cancel Confirmation Modal */}
             {cancelling && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-dark/60 backdrop-blur-sm animate-fadeIn">
-                    <div className="bg-white w-full max-w-md rounded-[2rem] p-8 md:p-12 text-center shadow-2xl">
-                        <div className="w-20 h-20 bg-red-100 text-red-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-text-dark/80 backdrop-blur-md animate-fade-in">
+                    <div className="bg-white w-full max-w-md rounded-[3rem] p-10 lg:p-14 text-center shadow-2xl relative">
+                        <div className="w-24 h-24 bg-red-50 text-red-500 rounded-[2rem] flex items-center justify-center text-4xl mx-auto mb-8 shadow-sm border border-red-100">
                             <i className="fa-solid fa-triangle-exclamation"></i>
                         </div>
-                        <h3 className="text-2xl font-bold text-dark mb-4">Cancel Appointment?</h3>
-                        <p className="text-text-light mb-8 italic">Are you sure you want to cancel this booking? This action cannot be undone.</p>
-                        <div className="flex gap-4">
-                            <button onClick={() => setCancelling(null)} className="flex-1 py-4 font-bold border-2 border-gray-100 rounded-xl">No, Keep It</button>
-                            <button onClick={handleCancel} className="flex-1 py-4 bg-red-500 text-white font-bold rounded-xl shadow-lg shadow-red-200">Yes, Cancel It</button>
+                        <h3 className="text-3xl font-bold text-text-dark mb-4 font-heading">{t.appointments.modal_cancel_title}</h3>
+                        <p className="text-text-light mb-10 leading-relaxed font-medium">{t.appointments.modal_cancel_msg}</p>
+                        <div className="flex flex-col gap-4">
+                            <button onClick={handleCancel} className="w-full py-5 bg-red-500 text-white font-bold rounded-2xl shadow-lg shadow-red-200 hover:bg-red-600 transition-all">
+                                {t.appointments.modal_confirm_cancel}
+                            </button>
+                            <button onClick={() => setCancelling(null)} className="w-full py-5 text-text-light font-bold hover:text-text-dark transition-colors">
+                                {t.appointments.modal_keep}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -203,3 +249,4 @@ export default function Appointments() {
         </Layout>
     );
 }
+

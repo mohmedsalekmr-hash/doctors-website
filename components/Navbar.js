@@ -11,7 +11,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -23,31 +23,39 @@ export default function Navbar() {
     ];
 
     return (
-        <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
-            <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
-
+        <header
+            className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
+                    ? 'bg-white/80 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-3'
+                    : 'bg-transparent py-6'
+                }`}
+        >
+            <div className="container-custom flex justify-between items-center">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group z-50">
-                    <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition-transform duration-500">
+                <Link href="/" className="flex items-center gap-3 group z-50">
+                    <div className="w-11 h-11 bg-primary text-white rounded-2xl flex items-center justify-center text-xl shadow-premium group-hover:rotate-12 transition-all duration-500">
                         <i className="fa-solid fa-tooth"></i>
                     </div>
                     <div className="flex flex-col">
-                        <span className={`text-xl font-bold tracking-widest uppercase font-heading ${scrolled ? 'text-primary' : 'text-primary lg:text-primary'} transition-colors`}>
-                            Smile<span className="text-accent">Pro</span>
+                        <span className={`text-xl font-bold tracking-tight font-heading ${scrolled ? 'text-primary' : 'text-primary'} transition-colors`}>
+                            Smile<span className="text-primary-light">Pro</span>
                         </span>
-                        <span className="text-[0.6rem] tracking-[0.2em] uppercase text-text-light hidden md:block">Luxury Dental Care</span>
+                        <span className="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-text-light/80 hidden md:block">
+                            Premium Clinic
+                        </span>
                     </div>
                 </Link>
 
                 {/* Desktop Nav */}
-                <nav className="hidden lg:flex items-center gap-10">
-                    <ul className="flex items-center gap-8">
+                <nav className="hidden lg:flex items-center gap-8">
+                    <ul className="flex items-center gap-1">
                         {navLinks.map((link) => (
                             <li key={link.path}>
                                 <Link
                                     href={link.path}
-                                    className={`relative text-sm font-semibold tracking-wide uppercase hover:text-accent transition-colors
-                                        ${router.asPath === link.path ? 'text-accent' : 'text-primary'}`}
+                                    className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300
+                                        ${router.asPath === link.path
+                                            ? 'text-primary bg-primary/5'
+                                            : 'text-text-base hover:text-primary hover:bg-primary/5'}`}
                                 >
                                     {link.name}
                                 </Link>
@@ -55,52 +63,63 @@ export default function Navbar() {
                         ))}
                     </ul>
 
-                    <div className="h-6 w-px bg-slate-200"></div>
+                    <div className="h-4 w-px bg-slate-200 mx-2"></div>
 
                     {/* Actions */}
                     <div className="flex items-center gap-4">
                         <button
                             onClick={toggleLang}
-                            className="text-sm font-bold text-primary hover:text-accent transition-colors flex items-center gap-2"
+                            className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-slate-100 transition-all text-primary"
+                            title={lang === 'en' ? 'Switch to Arabic' : 'Switch to English'}
                         >
-                            <i className="fa-solid fa-globe"></i>
-                            {lang === 'en' ? 'العربية' : 'English'}
+                            <span className="font-bold text-sm">{lang === 'en' ? 'ع' : 'EN'}</span>
                         </button>
 
-                        <Link href="/booking" className="px-6 py-3 bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-accent transition-colors duration-300 shadow-lg hidden xl:block">
+                        <Link
+                            href="/booking"
+                            className="btn-premium px-8 py-3 bg-primary text-white text-sm font-bold rounded-2xl shadow-premium hover:bg-primary-dark"
+                        >
                             {t.nav.book}
                         </Link>
                     </div>
                 </nav>
 
-                {/* Mobile Toggles */}
-                <div className="flex items-center gap-4 lg:hidden z-50">
-                    <button onClick={toggleLang} className={`text-sm font-bold ${scrolled ? 'text-primary' : 'text-primary'}`}>
-                        {lang === 'en' ? 'عربي' : 'EN'}
+                {/* Mobile Menu Toggle */}
+                <div className="flex items-center gap-3 lg:hidden z-50">
+                    <button
+                        onClick={toggleLang}
+                        className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 text-primary font-bold text-xs"
+                    >
+                        {lang === 'en' ? 'ع' : 'EN'}
                     </button>
-                    <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-primary">
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="w-10 h-10 flex items-center justify-center rounded-xl bg-primary text-white text-lg shadow-lg"
+                    >
                         <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars-staggered'}`}></i>
                     </button>
                 </div>
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 transition-all duration-500 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                {navLinks.map((link) => (
+            <div className={`fixed inset-0 bg-white/98 backdrop-blur-2xl z-40 flex flex-col items-center justify-center gap-8 transition-all duration-500 lg:hidden ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-10'
+                }`}>
+                {navLinks.map((link, idx) => (
                     <Link
                         key={link.path}
                         href={link.path}
                         onClick={() => setIsOpen(false)}
-                        className="text-2xl font-heading font-bold text-primary hover:text-accent transition-colors"
+                        className="text-3xl font-heading font-bold text-primary hover:scale-110 transition-transform"
+                        style={{ transitionDelay: `${idx * 100}ms` }}
                     >
                         {link.name}
                     </Link>
                 ))}
-                <div className="w-12 h-px bg-slate-100 my-4"></div>
+                <div className="w-12 h-px bg-slate-200 my-4"></div>
                 <Link
                     href="/booking"
                     onClick={() => setIsOpen(false)}
-                    className="px-8 py-4 bg-primary text-white rounded-none text-sm font-bold uppercase tracking-widest shadow-xl"
+                    className="px-10 py-5 bg-primary text-white rounded-2xl text-lg font-bold shadow-premium"
                 >
                     {t.nav.book}
                 </Link>
@@ -108,3 +127,4 @@ export default function Navbar() {
         </header>
     );
 }
+
