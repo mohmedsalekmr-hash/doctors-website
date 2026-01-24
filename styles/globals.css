@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 @tailwind base;
@@ -7,16 +7,16 @@
 
 :root {
     --primary: 15, 23, 42;
-    --luxury-gold: 197, 165, 114;
-    --luxury-ivory: 253, 251, 247;
-    --background: 253, 251, 247;
+    --clinical-blue: 2, 132, 199;
+    --clinical-teal: 13, 148, 136;
+    --background: 248, 250, 252;
 }
 
 body {
-    color: #1A1A1A;
+    color: #334155;
     background-color: rgb(var(--background));
-    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    @apply antialiased scroll-smooth selection:bg-accent/10 selection:text-accent;
+    font-family: 'Inter', sans-serif;
+    @apply antialiased scroll-smooth selection:bg-clinical-blue/10 selection:text-clinical-blue;
 }
 
 [dir="rtl"] body {
@@ -29,12 +29,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Outfit', sans-serif;
-    @apply tracking-tight font-semibold text-primary;
-}
-
-.font-serif {
-    font-family: 'Playfair Display', serif;
+    @apply tracking-tight font-bold text-slate-900 capitalize;
+    font-family: 'Instrument Sans', sans-serif;
 }
 
 [dir="rtl"] h1,
@@ -44,9 +40,14 @@ h6 {
 [dir="rtl"] h5,
 [dir="rtl"] h6 {
     font-family: 'Cairo', sans-serif;
+    @apply normal-case;
 }
 
-/* Custom Scrollbar */
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Clinical Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -56,49 +57,35 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-luxury-gold/30 rounded-full hover:bg-luxury-gold/50 transition-all;
+    @apply bg-primary-blue/20 rounded-full hover:bg-primary-blue/40 transition-all;
 }
 
-/* Luxury Utilities */
+/* UI Utilities */
 .glass-panel {
-    @apply bg-white/70 backdrop-blur-2xl border border-white/50 shadow-glass;
+    @apply bg-white/80 backdrop-blur-xl border border-white/50 shadow-glass;
 }
 
-.text-gradient-gold {
-    @apply bg-clip-text text-transparent bg-gradient-to-tr from-[#926F34] via-[#C5A572] to-[#B68D40];
+.text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-clinical-blue to-clinical-cyan;
 }
 
 .btn-premium {
-    @apply relative overflow-hidden transition-all duration-500 hover:shadow-floating active:scale-[0.98];
-}
-
-.btn-premium::before {
-    content: '';
-    @apply absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-500;
-}
-
-.btn-premium:hover::before {
-    @apply opacity-100;
+    @apply relative overflow-hidden transition-all duration-500 hover:shadow-floating active:scale-[0.98] rounded-2xl;
 }
 
 .section-padding {
-    @apply py-24 lg:py-40;
+    @apply py-20 lg:py-32;
 }
 
 .container-custom {
-    @apply max-w-[1440px] mx-auto px-8 lg:px-16;
+    @apply max-w-[1440px] mx-auto px-6 lg:px-12;
 }
 
-/* Layout Utilities */
 .flex-center {
     @apply flex items-center justify-center;
 }
 
-.grid-luxury {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16;
-}
-
-/* Reveal Animation Utilities */
+/* Animation Utilities */
 .reveal-text {
     @apply relative overflow-hidden;
 }
@@ -107,18 +94,22 @@ h6 {
     @apply block translate-y-full opacity-0 animate-reveal;
 }
 
-.reveal-item {
-    @apply opacity-0 animate-fade-in-up;
+.img-hover {
+    @apply transition-transform duration-700 ease-out hover:scale-105;
 }
 
-/* Image Hover Effects */
-.img-luxury-hover {
-    @apply transition-transform duration-1000 ease-out hover:scale-105;
-}
-
-/* Form Styles */
+/* Form Styling - Mobile Responsive */
 input,
 select,
 textarea {
-    @apply bg-transparent border-b border-luxury-slate/20 py-4 outline-none focus:border-luxury-gold transition-all duration-300;
+    @apply w-full bg-white border border-slate-200 rounded-xl px-5 py-4 outline-none focus:border-primary-blue focus:ring-4 focus:ring-primary-blue/5 transition-all duration-300 text-base;
+}
+
+label {
+    @apply block text-sm font-semibold text-slate-700 mb-2 tracking-wide;
+}
+
+/* Arabic Specific Adjustments */
+[dir="rtl"] .tracking-widest {
+    @apply tracking-normal;
 }

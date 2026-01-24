@@ -6,127 +6,147 @@ export const translations = {
     en: {
         nav: {
             home: 'Home',
-            about: 'About',
-            services: 'Services',
-            team: 'Team',
+            about: 'Clinic',
+            services: 'Treatments',
+            team: 'Specialists',
             contact: 'Contact',
-            book: 'Book Appointment'
+            book: 'Book Appointment',
+            my_appointments: 'My Appointments'
         },
         hero: {
-            subtitle: 'Premium Dental Care',
-            title: 'Experience the Art of a Perfect Smile',
-            desc: 'World-class dentistry in a serene, luxurious environment. We combine advanced technology with artistic precision.',
-            cta_primary: 'Book Consultation',
-            cta_secondary: 'Our Services',
-            badges: ['5-Star Rated', 'Top Specialists']
+            subtitle: 'Specialized Medical Center',
+            title: 'Your Health, Our Priority',
+            desc: 'Providing comprehensive dental care and pharmacy services with international clinical standards. Trust our specialists for your family health.',
+            cta_primary: 'Request Visit',
+            cta_secondary: 'View Specialties',
+            badges: ['Certified Clinic', '24/7 Support']
         },
         services: {
-            title: 'Our Expertise',
-            subtitle: 'Excellence in Every Detail',
+            title: 'Medical Specializations',
+            subtitle: 'Professional Clinical Care',
             items: [
-                { title: 'Cosmetic Dentistry', desc: 'Veneers, whitening, and smile design.' },
-                { title: 'Dental Implants', desc: 'Permanent, natural-looking tooth replacement.' },
-                { title: 'Orthodontics', desc: 'Invisalign and modern alignment solutions.' },
-                { title: 'General Care', desc: 'Routine hygiene and preventative health.' }
+                { title: 'Restorative Dentistry', desc: 'Expert restoration and clinical care for your teeth.' },
+                { title: 'Oral Surgery', desc: 'Safe and specialized surgical procedures.' },
+                { title: 'Family Practice', desc: 'Comprehensive medical care for all ages.' },
+                { title: 'Pharmacy Services', desc: 'On-site medical supply and expert counseling.' }
             ]
         },
         contact: {
-            title: 'Get in Touch',
-            desc: 'We look forward to welcoming you.',
+            title: 'Clinical Consultation',
+            desc: 'Connect with our medical board for any inquiries.',
+            location: 'Main Medical District, Suite 405, City Center',
+            hours: {
+                title: 'Clinical Operation Hours',
+                days: 'Monday - Saturday',
+                morning: '09:00 AM - 01:00 PM',
+                evening: '04:00 PM - 10:00 PM',
+                weekend: 'Friday: Emergency Only',
+                weekdays: 'Mon - Fri: 08:00 AM - 10:00 PM',
+                weekends: 'Sat - Sun: 10:00 AM - 06:00 PM'
+            },
             form: {
-                name: 'Full Name',
-                email: 'Email Address',
-                phone: 'Phone Number',
-                message: 'Message',
-                submit: 'Send Request',
-                success_title: 'Appointment Requested!',
-                success_msg: 'Thank you for choosing SmilePro. Our medical coordinators will contact you within the next 2 hours to finalize your visit.',
-                time_estimate: 'Estimated contact in: 1h 45m',
-                back_home: 'Back to Home'
+                name: 'Patient Name',
+                email: 'Institutional Email',
+                phone: 'Contact Number',
+                message: 'Clinical Inquiries / Symptoms',
+                submit: 'Confirm Request',
+                success_title: 'Request Registered',
+                success_msg: 'Your clinical request has been received. A medical practitioner will review and contact you within 30 minutes.',
+                time_estimate: 'Queue status: 2nd in line',
+                back_home: 'Return to Homepage'
             }
         },
         appointments: {
-            title: 'My Appointments',
-            subtitle: 'View, manage, or reschedule your upcoming visits with ease.',
-            find_label: 'Find Your Booking',
-            phone_placeholder: 'Enter your phone number...',
-            no_results: 'No appointments found',
-            no_results_sub: 'Try searching with a different phone number or book a new session.',
-            id_label: 'ID',
+            title: 'Medical Records',
+            subtitle: 'Access and manage your clinical visits securely.',
+            find_label: 'Retrieve Booking',
+            phone_placeholder: 'Registered phone number...',
+            no_results: 'No records found',
+            no_results_sub: 'Check your number or register a new clinical visit.',
+            id_label: 'Reference ID',
             adjust_btn: 'Reschedule',
-            cancel_btn: 'Cancel Visit',
-            modal_edit_title: 'Modify Appointment',
-            modal_cancel_title: 'Cancel Appointment?',
-            modal_cancel_msg: 'Are you sure you want to cancel this booking? This action cannot be undone.',
-            modal_keep: 'No, Keep It',
-            modal_confirm_cancel: 'Yes, Cancel It',
-            modal_save: 'Update Appointment',
-            modal_name: 'Patient Name',
-            modal_date: 'New Date',
-            modal_time: 'New Time'
+            cancel_btn: 'Withdraw Visit',
+            modal_edit_title: 'Clinical Schedule Adjustment',
+            modal_cancel_title: 'Cancel Clinical Visit?',
+            modal_cancel_msg: 'Note: Cancellations within 24 hours may affect prioritization.',
+            modal_keep: 'Confirm Visit',
+            modal_confirm_cancel: 'Withdraw',
+            modal_save: 'Update Record',
+            modal_date: 'Effective Date',
+            modal_time: 'Assigned Time'
         }
     },
     ar: {
         nav: {
             home: 'الرئيسية',
-            about: 'من نحن',
-            services: 'خدماتنا',
-            team: 'الفريق الطبي',
+            about: 'العيادة',
+            services: 'التخصصات',
+            team: 'الأطباء الأخصائيون',
             contact: 'اتصل بنا',
-            book: 'احجز موعد'
+            book: 'حجز موعد جديد',
+            my_appointments: 'مواعيدي'
         },
         hero: {
-            subtitle: 'رعاية أسنان فاخرة',
-            title: 'اكتشف فن الابتسامة المثالية',
-            desc: 'طب أسنان عالمي المستوى في بيئة هادئة وفاخرة. نجمع بين التكنولوجيا المتقدمة والدقة الفنية.',
-            cta_primary: 'احجز استشارة',
-            cta_secondary: 'خدماتنا',
-            badges: ['تقييم 5 نجوم', 'أفضل الأخصائيين']
+            subtitle: 'مركز طبي متكامل',
+            title: 'صحتكم هي أولويتنا القصوى',
+            desc: 'نقدم رعاية أسنان وخدمات صيدلانية متكاملة بمعايير طبية دولية. ثق بأخصائِينا من أجل صحة عائلتك.',
+            cta_primary: 'طلب زيارة',
+            cta_secondary: 'مشاهدة التخصصات',
+            badges: ['عيادة معتمدة', 'دعم طبي 24/7']
         },
         services: {
-            title: 'خبراتنا',
-            subtitle: 'التميز في كل التفاصيل',
+            title: 'التخصصات الطبية',
+            subtitle: 'الرعاية العيادية المتخصصة',
             items: [
-                { title: 'تجميل الأسنان', desc: 'الفينير، التبييض، وتصميم الابتسامة.' },
-                { title: 'زراعة الأسنان', desc: 'حلول دائمة وطبيعية لتعويض الأسنان.' },
-                { title: 'تقويم الأسنان', desc: 'إنفيزالاين وحلول التقويم الحديثة.' },
-                { title: 'العناية العامة', desc: 'النظافة الروتينية والصحة الوقائية.' }
+                { title: 'طب الأسنان الترميمي', desc: 'ترميم وتجميل الأسنان بأحدث الوسائل الطبية.' },
+                { title: 'جراحة الفم', desc: 'إجراءات جراحية متخصصة وآمنة تماماً.' },
+                { title: 'الطب العائلي', desc: 'رعاية صحية شاملة لجميع أفراد الأسرة.' },
+                { title: 'الخدمات الصيدلانية', desc: 'توفير الأدوية والاستشارات الطبية المتخصصة.' }
             ]
         },
         contact: {
-            title: 'تواصل معنا',
-            desc: 'نتطلع للرحب بكم.',
+            title: 'الاستشارة الطبية',
+            desc: 'تواصل مع الطاقم الطبي لأي استفسار أو حالة طارئة.',
+            location: 'الحي الطبي الرئيسي، جناح 405، مركز المدينة',
+            hours: {
+                title: 'ساعات العمل الرسمية',
+                days: 'من السبت إلى الخميس',
+                morning: '09:00 صباحاً - 01:00 ظهراً',
+                evening: '04:00 مساءً - 10:00 مساءً',
+                weekend: 'الجمعة: حالات الطوارئ فقط',
+                weekdays: 'الأحد - الخميس: 08:00 صباحاً - 10:00 مساءً',
+                weekends: 'الجمعة - السبت: 10:00 صباحاً - 06:00 مساءً'
+            },
             form: {
-                name: 'الاسم الكامل',
-                email: 'البريد الإلكتروني',
-                phone: 'رقم الهاتف',
-                message: 'الرسالة',
-                submit: 'أرسل الطلب',
-                success_title: 'تم استلام طلب الحجز!',
-                success_msg: 'شكراً لاختيارك SmilePro. سيتواصل معك منسقو المواعيد لدينا خلال الساعتين القادمتين لتأكيد موعدك.',
-                time_estimate: 'وقت التواصل المتوقع: ساعة و 45 دقيقة',
+                name: 'اسم المريض',
+                email: 'البريد الإلكتروني المؤسسي',
+                phone: 'رقم التواصل',
+                message: 'الاستفسارات الطبية / الأعراض',
+                submit: 'تأكيد الطلب',
+                success_title: 'تم تسجيل الطلب طبياً',
+                success_msg: 'لقد استلمنا طلبكم الطبي بنجاح. سيقوم أحد الأخصائيين بمراجعة الحالة والتواصل معكم خلال 30 دقيقة.',
+                time_estimate: 'حالة الدور: الثاني في الانتظار',
                 back_home: 'العودة للرئيسية'
             }
         },
         appointments: {
-            title: 'مواعيدي',
-            subtitle: 'عرض أو تعديل أو إلغاء زياراتك القادمة بكل سهولة.',
-            find_label: 'ابحث عن حجزك',
-            phone_placeholder: 'أدخل رقم هاتفك...',
-            no_results: 'لم يتم العثور على مواعيد',
-            no_results_sub: 'حاول البحث برقم هاتف مختلف أو احجز جلسة جديدة.',
-            id_label: 'رقم الحجز',
-            adjust_btn: 'تعديل الموعد',
+            title: 'السجل الطبي',
+            subtitle: 'الوصول إلى زياراتك الطبية وإدارتها بشكل آمن تماماً.',
+            find_label: 'استرجاع الحجز',
+            phone_placeholder: 'رقم الهاتف المسجل...',
+            no_results: 'لا توجد سجلات',
+            no_results_sub: 'تحقق من رقم الهاتف أو قم بحجز زيارة طبية جديدة.',
+            id_label: 'رقم المرجع',
+            adjust_btn: 'تغيير الموعد',
             cancel_btn: 'إلغاء الزيارة',
-            modal_edit_title: 'تعديل الموعد',
-            modal_cancel_title: 'إلغاء الموعد؟',
-            modal_cancel_msg: 'هل أنت متأكد أنك تريد إلغاء هذا الحجز؟ لا يمكن التراجع عن هذا الإجراء.',
-            modal_keep: 'لا، احتفظ به',
-            modal_confirm_cancel: 'نعم، قم بالإلغاء',
-            modal_save: 'تحديث الموعد',
-            modal_name: 'اسم المريض',
-            modal_date: 'التاريخ الجديد',
-            modal_time: 'الوقت الجديد'
+            modal_edit_title: 'تعديل الجدول الطبي',
+            modal_cancel_title: 'إلغاء الزيارة الطبية؟',
+            modal_cancel_msg: 'ملاحظة: الإلغاء قبل أقل من 24 ساعة قد يؤثر على ترتيب الأولوية.',
+            modal_keep: 'تأكيد الزيارة',
+            modal_confirm_cancel: 'إلغاء',
+            modal_save: 'تحديث السجل',
+            modal_date: 'التاريخ الفعلي',
+            modal_time: 'الوقت المحدد'
         }
     }
 };

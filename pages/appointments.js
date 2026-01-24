@@ -3,6 +3,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import Head from 'next/head';
 import Layout from '@/components/Layout';
 import { storage } from '@/utils/storage';
+import Calendar from '@/components/Calendar';
 
 export default function Appointments() {
     const { t, isRTL } = useLanguage();
@@ -15,14 +16,14 @@ export default function Appointments() {
     useEffect(() => {
         const data = storage.get('smilepro_bookings') || [];
         setAppointments(data);
-        setFiltered([]); // Start empty to encourage search
+        setFiltered(data); // Show all appointments by default
     }, []);
 
     const handleSearch = (e) => {
         const val = e.target.value;
         setSearchPhone(val);
         if (!val) {
-            setFiltered([]);
+            setFiltered(appointments); // Revert to all when search is cleared
         } else {
             setFiltered(appointments.filter(a => a.phone.includes(val)));
         }
@@ -58,27 +59,27 @@ export default function Appointments() {
 
                 <div className="container-custom relative z-10">
                     <div className="text-center mb-16 lg:mb-20">
-                        <h1 className="text-4xl lg:text-6xl font-heading font-bold text-text-dark mb-6">
+                        <h1 className="text-4xl lg:text-5xl font-heading font-bold text-slate-900 mb-6">
                             {t.appointments.title}
                         </h1>
-                        <p className="text-lg text-text-light max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
                             {t.appointments.subtitle}
                         </p>
                     </div>
 
                     <div className="max-w-2xl mx-auto mb-16">
-                        <div className="bg-white p-8 lg:p-10 rounded-[2.5rem] shadow-premium border border-slate-100 relative group transition-all duration-300 focus-within:ring-2 focus-within:ring-primary/10">
-                            <label className="block text-xs font-bold text-text-light mb-4 uppercase tracking-widest text-center group-focus-within:text-primary transition-colors">
+                        <div className="bg-white p-8 lg:p-10 rounded-[2.5rem] shadow-premium border border-slate-100 relative group transition-all duration-300 focus-within:ring-2 focus-within:ring-clinical-blue/10">
+                            <label className="block text-xs font-bold text-slate-500 mb-4 uppercase tracking-widest text-center group-focus-within:text-clinical-blue transition-colors">
                                 {t.appointments.find_label}
                             </label>
                             <div className="relative">
-                                <i className="fa-solid fa-phone absolute left-6 top-1/2 -translate-y-1/2 text-2xl text-slate-300 group-focus-within:text-primary transition-colors"></i>
+                                <i className="fa-solid fa-phone absolute left-6 top-1/2 -translate-y-1/2 text-2xl text-slate-200 group-focus-within:text-clinical-blue transition-colors"></i>
                                 <input
                                     type="tel"
                                     placeholder={t.appointments.phone_placeholder}
                                     value={searchPhone}
                                     onChange={handleSearch}
-                                    className="w-full p-6 pl-16 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none transition-all text-center text-2xl lg:text-3xl font-bold tracking-widest text-primary focus:bg-white focus:border-primary/20"
+                                    className="w-full p-6 pl-16 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none transition-all text-center text-2xl lg:text-3xl font-bold tracking-widest text-slate-900 focus:bg-white focus:border-clinical-blue/20"
                                 />
                             </div>
                         </div>
@@ -93,12 +94,12 @@ export default function Appointments() {
 
                                 <div className="flex justify-between items-start mb-8">
                                     <div className="flex items-center gap-5">
-                                        <div className="w-14 h-14 bg-primary/5 text-primary rounded-2xl flex items-center justify-center text-2xl">
+                                        <div className="w-14 h-14 bg-clinical-blue/5 text-clinical-blue rounded-2xl flex items-center justify-center text-2xl">
                                             <i className="fa-solid fa-tooth"></i>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-text-dark text-lg leading-tight">{a.service}</h3>
-                                            <span className="text-[10px] text-text-light font-bold uppercase tracking-widest">{t.appointments.id_label}: #{a.id.slice(-6)}</span>
+                                            <h3 className="font-bold text-slate-900 text-lg leading-tight">{a.service}</h3>
+                                            <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">{t.appointments.id_label}: #{a.id.slice(-6)}</span>
                                         </div>
                                     </div>
                                     <span className={`text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full ${a.status === 'Cancelled' ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-600'}`}>
@@ -125,7 +126,7 @@ export default function Appointments() {
                                     <div className="flex gap-4">
                                         <button
                                             onClick={() => setEditing(a)}
-                                            className="flex-1 py-4 bg-slate-50 text-text-dark font-bold rounded-2xl text-xs hover:bg-primary hover:text-white transition-all duration-300 border border-slate-100"
+                                            className="flex-1 py-4 bg-slate-50 text-slate-900 font-bold rounded-2xl text-xs hover:bg-clinical-blue hover:text-white transition-all duration-300 border border-slate-100"
                                         >
                                             <i className="fa-solid fa-calendar-pen mr-2"></i> {t.appointments.adjust_btn}
                                         </button>
@@ -167,57 +168,55 @@ export default function Appointments() {
                         </button>
 
                         <div className="mb-10 text-center">
-                            <div className="w-20 h-20 bg-primary/5 text-primary rounded-[1.5rem] flex items-center justify-center text-3xl mx-auto mb-6">
+                            <div className="w-20 h-20 bg-clinical-blue/5 text-clinical-blue rounded-[1.5rem] flex items-center justify-center text-3xl mx-auto mb-6">
                                 <i className="fa-solid fa-calendar-check"></i>
                             </div>
-                            <h3 className="text-3xl font-bold text-text-dark font-heading">{t.appointments.modal_edit_title}</h3>
+                            <h3 className="text-3xl font-bold text-slate-900 font-heading">{t.appointments.modal_edit_title}</h3>
                         </div>
 
                         <form onSubmit={handleUpdate} className="space-y-8">
                             <div className="space-y-6">
                                 <div className="group relative">
-                                    <label className="text-[10px] font-bold uppercase tracking-widest text-text-light group-focus-within:text-primary block mb-3">{t.appointments.modal_name}</label>
+                                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 group-focus-within:text-clinical-blue block mb-3">{t.appointments.modal_name}</label>
                                     <input
-                                        className="w-full p-5 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none focus:bg-white focus:border-primary/20 transition-all font-bold text-text-dark"
+                                        className="w-full p-5 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none focus:bg-white focus:border-clinical-blue/20 transition-all font-bold text-slate-900"
                                         value={editing.name}
                                         onChange={(e) => setEditing({ ...editing, name: e.target.value })}
                                         disabled
                                     />
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-6">
+                                <div className="space-y-6">
                                     <div className="group relative">
                                         <label className="text-[10px] font-bold uppercase tracking-widest text-text-light group-focus-within:text-primary block mb-3">{t.appointments.modal_date}</label>
-                                        <input
-                                            type="date"
-                                            className="w-full p-5 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none focus:bg-white focus:border-primary/20 transition-all font-bold text-text-dark"
-                                            value={editing.date}
-                                            onChange={(e) => setEditing({ ...editing, date: e.target.value })}
+                                        <Calendar
+                                            selectedDate={editing.date}
+                                            onDateSelect={(date) => setEditing({ ...editing, date })}
                                         />
                                     </div>
                                     <div className="group relative">
                                         <label className="text-[10px] font-bold uppercase tracking-widest text-text-light group-focus-within:text-primary block mb-3">{t.appointments.modal_time}</label>
-                                        <select
-                                            className="w-full p-5 bg-slate-50 border-2 border-slate-50 rounded-2xl outline-none focus:bg-white focus:border-primary/20 transition-all font-bold text-text-dark appearance-none"
-                                            value={editing.time}
-                                            onChange={(e) => setEditing({ ...editing, time: e.target.value })}
-                                        >
-                                            <option>09:00 AM</option>
-                                            <option>10:00 AM</option>
-                                            <option>11:30 AM</option>
-                                            <option>01:00 PM</option>
-                                            <option>02:30 PM</option>
-                                            <option>04:00 PM</option>
-                                        </select>
+                                        <div className="grid grid-cols-3 gap-2">
+                                            {['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '19:00', '20:00'].map(t => (
+                                                <button
+                                                    key={t}
+                                                    type="button"
+                                                    onClick={() => setEditing({ ...editing, time: t })}
+                                                    className={`py-3 rounded-xl font-bold text-xs transition-all border ${editing.time === t ? 'bg-primary text-white border-primary shadow-sm' : 'bg-slate-50 border-slate-100 text-slate-500 hover:border-primary/30'}`}
+                                                >
+                                                    {t}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                                <button type="submit" className="flex-1 btn-premium py-5 bg-primary text-white font-bold rounded-2xl shadow-premium">
+                                <button type="submit" className="flex-1 btn-premium py-5 bg-clinical-blue text-white font-bold rounded-2xl shadow-luxury hover:bg-clinical-blue/90">
                                     {t.appointments.modal_save}
                                 </button>
-                                <button type="button" onClick={() => setEditing(null)} className="flex-1 py-5 font-bold text-text-light hover:text-text-dark transition-colors">
+                                <button type="button" onClick={() => setEditing(null)} className="flex-1 py-5 font-bold text-slate-400 hover:text-slate-900 transition-colors">
                                     {isRTL ? 'إلغاء' : 'Cancel'}
                                 </button>
                             </div>

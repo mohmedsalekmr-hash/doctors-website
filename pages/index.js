@@ -13,8 +13,8 @@ export default function Home() {
     return (
         <Layout>
             <Head>
-                <title>SmilePro | Premium Dental Care & Luxury Clinical Experience</title>
-                <meta name="description" content="Experience world-class dental services in a luxurious, spa-like environment. Book your premium consultation with our expert specialists today." />
+                <title>SmilePro | Clinical Medical Center & Advanced Diagnostics</title>
+                <meta name="description" content="Professional clinical medical services with a focus on advanced diagnostics and expert patient care. Book your medical consultation today." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
 
